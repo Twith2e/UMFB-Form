@@ -13,31 +13,12 @@ function SecondPage() {
         </span>
       </div>
       <div className="flex gap-2">
-        <span>I</span>
-        <input
-          className="w-full border-b border-b-black outline-none"
-          type="text"
-        />
+        <InputField text={"I"} name={"Priopertor-name"} />
       </div>
       <div className="flex gap-2">
-        <span className="whitespace-nowrap">
-          Being the sole proprietor of the firm
-        </span>
-        <input
-          type="text"
-          className="border-b border-b-black w-full outline-none"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          className="w-full border-b border-b-black outline-none"
-        />
-      </div>
-      <div className="flex gap-2">
-        <input
-          type="text"
-          className="w-full border-b border-b-black outline-none"
+        <InputField
+          text={"Being the sole proprietor of the firm"}
+          name={"priopertor-firm"}
         />
         <span className="whitespace-nowrap">
           which has been duly registered under the
@@ -53,8 +34,16 @@ function SecondPage() {
         <span>above firm and honour the following signatures:</span>
       </div>
       <div className="flex justify-between">
-        <Signature text="signature" />
-        <Signature text="signature" />
+        <Signature
+          text="signature"
+          name={"m-s-1"}
+          imgName={"mandatate-signature-1"}
+        />
+        <Signature
+          text="signature"
+          name={"m-s-2"}
+          imgName={"mandatate-signature-2"}
+        />
       </div>
       <div>
         <span>
@@ -116,36 +105,39 @@ function SecondPage() {
         </p>
       </div>
       <div className="flex gap-3">
-        <InputField text={"Dated this"} />
-        <InputField text={"Day of"} />
+        <InputField text={"Dated this"} name={"proprietor-signature-date"} />
+        <InputField text={"Day of"} name={"proprietor-signature-day"} />
       </div>
       <div className="row flex">
         <div className="col-8">
-          <InputField text="Full name" />
+          <InputField text="Full name" name={"proprietor-name"} />
         </div>
         <div className="col-4">
-          <InputField text="Signature" />
+          <Signature imgName={"priopertor-signature"} isDate={false} />
         </div>
       </div>
       <div>
-        <InputField text="Address" />
+        <InputField text="Address" name={"proprietor-address"} />
       </div>
       <div className="row flex mt-5">
         <div className="flex col-8 items-end gap-2">
           <span className="whitespace-nowrap font-bold text-sm">
             Witnessed by:
           </span>
-          <InputField text={"Full name"} />
+          <InputField text={"Full name"} name={"proprietor-witness-name"} />
         </div>
         <div className="col-4">
-          <InputField text={"Signature"} />
+          <Signature imgName={"priopertor-witness-signature"} isDate={false} />
         </div>
       </div>
       <div>
-        <InputField text={"Occupation"} />
+        <InputField
+          text={"Occupation"}
+          name={"proprietor-witness-occupation"}
+        />
       </div>
       <div>
-        <InputField text={"Address"} />
+        <InputField text={"Address"} name={"proprietor-witness-address"} />
       </div>
     </div>
   );

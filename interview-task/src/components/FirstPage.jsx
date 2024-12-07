@@ -9,15 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import SubmitButton from "./SubmitButton";
 
 function FirstPage() {
-  const { formData } = useForm();
-
-  // Example Usage
-
   const info1 = [
     {
       title: "BUSINESS NAME",
       type: "text",
       name: "business-name",
+      required: true,
     },
     {
       title: "REGISTRATION NUMBER",
@@ -55,10 +52,14 @@ function FirstPage() {
       name: "email",
     },
     {
-      title: "BUSINESS TURNOVER",
-      lilTitle: ["Monthly", "Annually"],
+      title: "Monthly",
       type: "text",
-      name: "business-turnover",
+      name: "monthly-business-turnover",
+    },
+    {
+      title: "Annually",
+      type: "text",
+      name: "annually-business-turnover",
     },
     {
       title: "NO. OF EMPLOYEES",
@@ -110,27 +111,19 @@ function FirstPage() {
           </span>
           <div className="row w-full">
             <div className="col-5">
-              <Info
-                {...{
-                  title: info1[8].lilTitle[0],
-                }}
-              />
+              <Info {...info1[8]} />
             </div>
             <div className="col-5">
-              <Info
-                {...{
-                  title: info1[8].lilTitle[1],
-                }}
-              />
+              <Info {...info1[9]} />
             </div>
           </div>
         </div>
         <div className="flex justify-between">
           <div className="col-5">
-            <Info {...info1[9]} />
+            <Info {...info1[10]} />
           </div>
           <div className="col-5">
-            <Info {...info1[10]} />
+            <Info {...info1[11]} />
           </div>
         </div>
       </div>
@@ -147,9 +140,13 @@ function FirstPage() {
         </span>
       </div>
       <div className="flex justify-evenly w-full">
-        <Signature width={500} name={"first-sign"} imgName={"first-sign"} />
-        <Signature width={500} name={"second-sign"} imgName={"second-sign"} />
-        <Signature width={500} name={"third-sign"} imgName={"third-sign"} />
+        <Signature name={"first-sign"} imgName={"first-sign"} />
+        <Signature name={"second-sign"} imgName={"second-sign"} />
+        <Signature name={"third-sign"} imgName={"third-sign"} />
+        <img
+          src="blob:http://localhost:5173/abf38045-6b05-46bc-8da2-94a166a9fc98"
+          alt=""
+        />
       </div>
 
       <SubmitButton />

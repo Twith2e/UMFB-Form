@@ -1,4 +1,12 @@
+import { useForm } from "./FormContext";
+
 function Table() {
+  const { formData, updateField } = useForm();
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    updateField(name, e.target.value);
+  };
   return (
     <div>
       <table className="w-full border-collapse border border-black text-white">
@@ -15,18 +23,27 @@ function Table() {
               <textarea
                 className="h-full w-full text-black border-none outline-none"
                 type="text"
+                value={formData["office-address"] || ""}
+                name="office-address"
+                onChange={handleChange}
               />
             </td>
             <td className="h-[100px] border-r border-black w-1/3">
               <textarea
                 className="h-full w-full text-black border-none outline-none"
                 type="text"
+                value={formData["foreign-address"] || ""}
+                name="foreign-address"
+                onChange={handleChange}
               />
             </td>
             <td className="h-[100px] border-r border-black w-1/3">
               <textarea
                 className="h-full w-full text-black border-none outline-none"
                 type="text"
+                value={formData["mailing-address"] || ""}
+                name="mailing-address"
+                onChange={handleChange}
               />
             </td>
           </tr>

@@ -1,68 +1,95 @@
 const { jsPDF } = require("jspdf");
 const nodemailer = require("nodemailer");
 
-// Generate PDF
+// Email function
 const sendEmail = async (req, res) => {
-  const { formData } = req.body;
+  const { formData, imageData } = req.body;
 
-  if (!formData || typeof formData !== "object") {
+  // Validate input
+  if (!formData || !imageData || !Array.isArray(imageData)) {
     return res
       .status(400)
-      .json({ message: "Invalid form data", status: false });
+      .json({ message: "Invalid formData or imageData provided." });
   }
 
-  if (!process.env.EMAIL || !process.env.PASSWORD) {
+  // Validate imageData content
+  const invalidImages = imageData.filter((img) => !img.base64 || !img.mimeType);
+  if (invalidImages.length > 0) {
     return res
-      .status(500)
-      .json({ message: "Email configuration is missing", status: false });
+      .status(400)
+      .json({ message: "Invalid image data detected in imageData." });
   }
 
-  const doc = new jsPDF();
-  doc.setFontSize(16);
-  doc.text("Form Data", 10, 10);
-
-  let y = 20;
-  for (const [key, value] of Object.entries(formData)) {
-    doc.text(`${key}: ${value}`, 10, y);
-    y += 10;
-  }
-
-  const pdfBuffer = Buffer.from(doc.output("arraybuffer"));
-
-  // Set up Nodemailer transporter
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL,
-      pass: process.env.PASSWORD,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL,
-    to: ["temiladeabdulbasit2002@gmail.com", "muritalaabimbola@gmail.com"],
-    subject: "Form Data",
-    text: "Please find the attached PDF.",
-    attachments: [
-      {
-        filename: "form-data.pdf",
-        content: pdfBuffer,
-        contentType: "application/pdf",
-      },
-    ],
-  };
   try {
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully:", info.response);
-    res.status(200).json({ message: "Email sent successfully!", status: true });
+    // Generate a PDF from formData
+    const pdfDoc = new jsPDF();
+    pdfDoc.text("Form Data Submission", 10, 10);
+
+    const pageHeight = pdfDoc.internal.pageSize.height; // Page height
+    let cursorY = 20; // Initial Y position
+    const lineHeight = 10; // Line height for each text
+
+    Object.keys(formData).forEach((key, index) => {
+      const text = `${key}: ${formData[key]}`;
+
+      // Check if text exceeds page height
+      if (cursorY + lineHeight > pageHeight) {
+        pdfDoc.addPage(); // Add new page
+        cursorY = 10; // Reset Y position for new page
+      }
+
+      pdfDoc.text(text, 10, cursorY); // Add text to PDF
+      cursorY += lineHeight; // Move cursor down
+    });
+
+    // Generate PDF buffer
+    const pdfBuffer = pdfDoc.output("arraybuffer");
+
+    // Debugging: Log buffer size
+    console.log("PDF Buffer Size:", pdfBuffer.byteLength);
+
+    // Convert buffer to Node.js Buffer
+    const pdfNodeBuffer = Buffer.from(pdfBuffer);
+
+    // Attach images as files
+    const imageAttachments = imageData.map((image, index) => ({
+      filename:
+        image.name || `image_${index + 1}.${image.mimeType.split("/")[1]}`,
+      content: Buffer.from(image.base64, "base64"),
+      contentType: image.mimeType,
+    }));
+
+    // Email options
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: ["temiladeabdulbasit2002@gmail.com"],
+      subject: "Form Data Submission",
+      text: "Please find the attached PDF and uploaded images.",
+      attachments: [
+        {
+          filename: "formData.pdf",
+          content: pdfNodeBuffer,
+          contentType: "application/pdf",
+        },
+        ...imageAttachments, // Add image attachments
+      ],
+    };
+
+    // Configure Nodemailer transporter
+    const transporter = nodemailer.createTransport({
+      service: "gmail", // Adjust based on your email provider
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD, // Use environment variables for security
+      },
+    });
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
-    console.error("Error sending email:", error);
-    res
-      .status(400)
-      .json({ message: "An error occurred sending the mail", status: false });
+    console.error("Error generating PDF or sending email:", error);
+    res.status(500).json({ message: "Failed to process the request." });
   }
 };
 

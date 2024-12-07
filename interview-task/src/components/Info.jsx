@@ -1,7 +1,7 @@
 import { useForm } from "./FormContext";
 
-function Info({ title, type, name }) {
-  const { formData, updateField } = useForm();
+function Info({ title, type, name, required = true }) {
+  const { formData, updateField, errors } = useForm();
   const handleChange = (event) => {
     updateField(name, event.target.value);
   };
@@ -26,7 +26,11 @@ function Info({ title, type, name }) {
         }
         value={formData[name] || ""}
         onChange={handleChange}
+        multiple={type === "file" ? true : false}
       />
+      {errors[name] && (
+        <span className="text-red-500 text-xs">{errors[name]}</span>
+      )}
     </div>
   );
 }
