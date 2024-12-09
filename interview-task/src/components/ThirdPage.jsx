@@ -6,6 +6,7 @@ import PageHeader from "../components/PageHeader";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "./FormContext";
+import DropDown from "./DropDown";
 
 export default function ThirdPage() {
   const { formData, updateField } = useForm();
@@ -145,18 +146,7 @@ export default function ThirdPage() {
           />
         </div>
       </div>
-      <div className="row justify-between">
-        <div className="col-5">
-          <Info
-            type={"text"}
-            title={"State of Origin"}
-            name={"proprietor-state-of-origin"}
-          />
-        </div>
-        <div className="col-5">
-          <Info type={"text"} title={"L.G.A"} name={"proprietor-LGA"} />
-        </div>
-      </div>
+      <DropDown />
       <div className="row justify-between">
         <div className="col-5">
           <Info

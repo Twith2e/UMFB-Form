@@ -10,12 +10,10 @@ export default function SubmitButton() {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default behavior
-    console.log("Form Data:", formData);
-    console.log("Image Data:", imageData);
+  const unrequiredFields = ["proprietor-others", "proprietor-religion"];
 
-    const isFormValid = validateForm();
+  const handleSubmit = async (e) => {
+    const isFormValid = validateForm(formData, unrequiredFields);
     console.log("Is form valid:", isFormValid); // Debug validation result
 
     if (!isFormValid) {
@@ -25,14 +23,13 @@ export default function SubmitButton() {
 
     try {
       setIsPending(true);
-      const response = await fetch("http://localhost:5000/email/send-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const response = await axios.post(
+        "http://localhost:5000/email/send-email",
+        {
           formData,
           imageData,
-        }),
-      });
+        }
+      );
 
       if (response.status === 200) {
         toast.success("Form Submitted");
@@ -43,7 +40,10 @@ export default function SubmitButton() {
       }
     } catch (error) {
       toast.error("An error occurred while submitting");
-      console.error("Error:", error);
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
     } finally {
       setIsPending(false);
     }

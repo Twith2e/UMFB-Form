@@ -1,6 +1,7 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useEffect, useState } from "react";
+import SubmitButton from "../components/SubmitButton";
 
 function Home() {
   const location = useLocation();
@@ -34,6 +35,9 @@ function Home() {
           </header>
           <div>
             <Outlet />
+          </div>
+          <div className="mt-3 flex justify-center items-center">
+            <SubmitButton />
           </div>
           <div className="flex gap-3 items-center justify-center mt-8">
             <button

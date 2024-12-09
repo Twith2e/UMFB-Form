@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "./FormContext";
 import { format } from "date-fns";
 
-function Signature({ name, imgName, isDate = true, label }) {
+function Signature({ name, imgName, isDate = true, label, required = true }) {
   const {
     formData,
     updateField,
@@ -61,6 +61,7 @@ function Signature({ name, imgName, isDate = true, label }) {
             type="file"
             accept="image/*"
             name={imgName}
+            required={required}
             className="hidden"
             onChange={handleImageChange} // Update preview and upload image
           />

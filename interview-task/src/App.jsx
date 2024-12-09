@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import FourthPage from "./components/FourthPage";
 import Specimen from "./components/Specimen";
 import NotFound from "./pages/404";
+import DropDown from "./components/DropDown";
 function App() {
   return (
     <Routes>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/last-page" element={<Specimen />} />
       </Route>
       <Route path="*" element={<NotFound />} />
+      <Route path="/states" element={<DropDown />} />
     </Routes>
   );
 }

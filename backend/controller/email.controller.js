@@ -7,10 +7,16 @@ const sendEmail = async (req, res) => {
 
   // Validate input
   if (!formData || !imageData || !Array.isArray(imageData)) {
+    console.log("formdata:", formData);
+    console.log("imagedata:", imageData);
+
     return res
       .status(400)
       .json({ message: "Invalid formData or imageData provided." });
   }
+
+  console.log(formData);
+  console.log(imageData);
 
   // Validate imageData content
   const invalidImages = imageData.filter((img) => !img.base64 || !img.mimeType);

@@ -10,7 +10,6 @@ function FirstPage() {
       title: "BUSINESS NAME",
       type: "text",
       name: "business-name",
-      required: true,
     },
     {
       title: "REGISTRATION NUMBER",

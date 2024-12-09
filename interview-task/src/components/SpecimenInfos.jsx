@@ -103,14 +103,16 @@ export default function SpecimenInfo({ index }) {
       <div className="row flex justify-between">
         <div className="flex justify-between p-2 border border-red-700 col-5">
           <Signature
-            imgName={`Specimen-Signature${index}`}
+            imgName={`Specimen-Signature${index + 1}`}
             isDate={false}
-            label={index}
+            label={"Upload Signature"}
+            required={index === 0 ? true : false}
           />
           <Signature
-            imgName={`Specimen-Passport-Photograph${index}`}
+            imgName={`Specimen-Passport-Photograph${index + 1}`}
             isDate={false}
             label={"Upload Photograph"}
+            required={index === 0 ? true : false}
           />
         </div>
         <div className="col-5 flex flex-col gap-2">

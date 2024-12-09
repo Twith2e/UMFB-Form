@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import axios from "axios";
 
 const FormContext = createContext();
 
@@ -9,6 +10,7 @@ export const FormProvider = ({ children }) => {
   const [imageData, setImageData] = useState([]);
   const [imagePreview, setImagePreview] = useState({});
   const [errors, setErrors] = useState({});
+  const [LGA, setLGA] = useState([]);
 
   const updateField = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -18,40 +20,81 @@ export const FormProvider = ({ children }) => {
     }));
   };
 
-  function validateForm() {
-    // Collect all the input elements with the 'required' attribute
-    const inputElements = document.querySelectorAll("input[required][name]");
+  function validateForm(formData, unrequiredFields) {
+    console.log("Form Data:", formData);
+    console.log("Unrequired Fields:", unrequiredFields);
 
-    // Validate all required fields are filled
-    const isValid = Array.from(inputElements).every((input) => {
-      const fieldName = input.name;
-      const value = formData[fieldName];
-
-      // Check if the field is required and if it's not empty
-      return typeof value === "string"
-        ? value.trim() !== ""
-        : value !== undefined && value !== null;
-    });
-
-    if (!isValid) {
-      // Debug missing required fields
-      const missingFields = Array.from(inputElements)
-        .filter((input) => {
-          const fieldName = input.name;
-          const value = formData[fieldName];
-          return !(typeof value === "string"
-            ? value.trim() !== ""
-            : value !== undefined && value !== null);
-        })
-        .map((input) => input.name); // Collect missing field names
-
-      console.error("Missing required fields:", missingFields);
+    // Ensure formData is an object and unrequiredFields is an array
+    if (typeof formData !== "object" || Array.isArray(formData)) {
+      console.error("formData must be an object.");
+      return false;
     }
 
-    console.log("Form Data:", formData);
-    console.log("Validation status:", isValid);
-    return isValid;
+    if (!Array.isArray(unrequiredFields)) {
+      console.error("unrequiredFields must be an array.");
+      return false;
+    }
+
+    // Check if formData is empty (i.e., no fields at all)
+    if (Object.keys(formData).length === 0) {
+      console.error("Form is empty. Validation failed.");
+      return false; // Return false if formData is empty
+    }
+
+    // Iterate over all the required fields (those not in the unrequiredFields array)
+    // Assuming you have a list of all field names (required and optional) for your form
+    const requiredFields = ["name", "email", "message"]; // Example, replace with your actual required fields
+
+    for (const field of requiredFields) {
+      // If the field is required and it's not in the unrequiredFields list
+      if (!unrequiredFields.includes(field)) {
+        const value = formData[field];
+
+        // Check if the value is empty or undefined
+        if (value === undefined || value === "") {
+          console.error(
+            `Validation failed: ${field} is required and is empty.`
+          );
+          return false; // Form is invalid if any required field is empty
+        }
+      }
+    }
+
+    // If we reach here, all required fields are valid
+    return true;
   }
+
+  // const exampleData = {
+  //   name: "John Doe",
+  //   email: "", // Empty email, which should fail validation if it's required
+  //   message: "Hello world!",
+  // };
+
+  // for (const [key, value] of Object.entries(exampleData)) {
+  //   if (!value || value.trim() === "") {
+  //     console.error(`Validation failed: ${key} is required and is empty.`);
+  //     return false; // Return false if any required field is empty
+  //   }
+  // }
+
+  const loadLGA = async (state) => {
+    try {
+      const res = await axios.get(
+        `https://nga-states-lga.onrender.com/?state=${state}`
+      );
+
+      // Ensure the response is an array, even if the data is not as expected
+      const lgas = Array.isArray(res.data) ? res.data : [];
+
+      // Update the LGA state with a validated array
+      setLGA(lgas);
+    } catch (error) {
+      console.error("Error fetching LGAs:", error);
+
+      // In case of an error, set LGA to an empty array to prevent mapping errors
+      setLGA([]);
+    }
+  };
 
   const updateImage = (image) => {
     setImageData((prev) => [...prev, image]); // Append to the array
@@ -99,6 +142,8 @@ export const FormProvider = ({ children }) => {
         imagePreview,
         errors,
         validateForm,
+        loadLGA,
+        LGA,
       }}
     >
       {children}
