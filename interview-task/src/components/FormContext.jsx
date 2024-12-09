@@ -19,28 +19,33 @@ export const FormProvider = ({ children }) => {
   };
 
   function validateForm() {
-    // Collect all the names of the input fields dynamically
-    const inputElements = document.querySelectorAll("input[name]");
-    const requiredFields = Array.from(inputElements).map((input) => input.name);
+    // Collect all the input elements with the 'required' attribute
+    const inputElements = document.querySelectorAll("input[required][name]");
 
     // Validate all required fields are filled
-    const isValid = requiredFields.every((field) => {
-      const value = formData[field];
-      // Ensure value is a string before calling .trim() or just check if it's truthy
+    const isValid = Array.from(inputElements).every((input) => {
+      const fieldName = input.name;
+      const value = formData[fieldName];
+
+      // Check if the field is required and if it's not empty
       return typeof value === "string"
         ? value.trim() !== ""
         : value !== undefined && value !== null;
     });
 
     if (!isValid) {
-      // Debug missing fields
-      const missingFields = requiredFields.filter(
-        (field) =>
-          !(typeof formData[field] === "string"
-            ? formData[field].trim() !== ""
-            : formData[field] !== undefined && formData[field] !== null)
-      );
-      console.error("Missing fields:", missingFields);
+      // Debug missing required fields
+      const missingFields = Array.from(inputElements)
+        .filter((input) => {
+          const fieldName = input.name;
+          const value = formData[fieldName];
+          return !(typeof value === "string"
+            ? value.trim() !== ""
+            : value !== undefined && value !== null);
+        })
+        .map((input) => input.name); // Collect missing field names
+
+      console.error("Missing required fields:", missingFields);
     }
 
     console.log("Form Data:", formData);

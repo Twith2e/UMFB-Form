@@ -27,6 +27,7 @@ function Info({ title, type, name, required = true }) {
         value={formData[name] || ""}
         onChange={handleChange}
         multiple={type === "file" ? true : false}
+        required={required}
       />
       {errors[name] && (
         <span className="text-red-500 text-xs">{errors[name]}</span>

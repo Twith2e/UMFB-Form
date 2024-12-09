@@ -26,20 +26,26 @@ const sendEmail = async (req, res) => {
     pdfDoc.text("Form Data Submission", 10, 10);
 
     const pageHeight = pdfDoc.internal.pageSize.height; // Page height
-    let cursorY = 20; // Initial Y position
+    const pageWidth = pdfDoc.internal.pageSize.width; // Page width
+    const marginX = 10; // Left margin
     const lineHeight = 10; // Line height for each text
+    const maxWidth = pageWidth - marginX * 2; // Max width for text
+    let cursorY = 20; // Initial Y position
 
-    Object.keys(formData).forEach((key, index) => {
+    Object.keys(formData).forEach((key) => {
       const text = `${key}: ${formData[key]}`;
 
+      // Wrap text to fit within page width
+      const wrappedText = pdfDoc.splitTextToSize(text, maxWidth);
+
       // Check if text exceeds page height
-      if (cursorY + lineHeight > pageHeight) {
+      if (cursorY + wrappedText.length * lineHeight > pageHeight) {
         pdfDoc.addPage(); // Add new page
         cursorY = 10; // Reset Y position for new page
       }
 
-      pdfDoc.text(text, 10, cursorY); // Add text to PDF
-      cursorY += lineHeight; // Move cursor down
+      pdfDoc.text(wrappedText, marginX, cursorY); // Add text to PDF
+      cursorY += wrappedText.length * lineHeight; // Adjust cursor for multi-line text
     });
 
     // Generate PDF buffer

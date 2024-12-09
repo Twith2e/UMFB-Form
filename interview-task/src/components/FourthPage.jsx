@@ -7,8 +7,18 @@ export default function FourthPage() {
     <div className="flex flex-col gap-3">
       <Table3 />
       <div className="flex justify-between">
-        <Signature text={"Signature of CSU and Date"} />
-        <Signature text={"Account Officer"} />
+        <Signature
+          name={"Signature of CSU Signature"}
+          imgName={"Signature of CSU Signature"}
+          text={"Signature of CSU and Date"}
+          label="Upload Signature"
+        />
+        <Signature
+          name={"Account Officer Signature"}
+          imgName={"Account Officer Signature"}
+          text={"Account Officer"}
+          label="Upload Signature"
+        />
       </div>
       <div className="flex flex-col gap-2">
         <span className="text-[#7d3330] font-bold">

@@ -2,8 +2,9 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "./FormContext";
+import { format } from "date-fns";
 
-function Signature({ name, imgName, isDate = true }) {
+function Signature({ name, imgName, isDate = true, label }) {
   const {
     formData,
     updateField,
@@ -26,6 +27,7 @@ function Signature({ name, imgName, isDate = true }) {
 
   const handleImageClear = () => {
     retainImage(`${imgName}-preview`, null); // Clear preview from formData
+    updateField(imgName, null);
   };
 
   return (
@@ -51,7 +53,7 @@ function Signature({ name, imgName, isDate = true }) {
                 className="w-full h-full object-cover"
               />
             ) : (
-              <span className="text-gray-500">Upload Signature</span>
+              <span className="text-gray-500 text-center">{label}</span>
             )}
           </div>
           <input
@@ -82,6 +84,7 @@ function Signature({ name, imgName, isDate = true }) {
             className="border border-gray-300 p-2 rounded-lg shadow-sm mt-4 focus:outline-none focus:ring-2 focus:ring-blue-200"
             placeholderText="Select a date"
             name={name}
+            dateFormat={"dd/MM/yyyy"}
           />
         )}
       </div>

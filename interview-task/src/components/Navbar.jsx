@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
+
 function Navbar() {
   return (
     <nav className="flex gap-5 items-center mb-5">
-      <div>
+      <Link to={"/"}>
         <img
-          src="./src/assets/UMFB-LOGO-MAIN-SMALL.png"
+          src="./src/assets/mfb-logo.png"
           alt="logo"
           style={{ width: "120px", height: "100px" }}
         />
-      </div>
+      </Link>
       <div className="flex flex-col items-end relative">
         <h1 className="text-[60px] text-[#7d3330] font-bold p-0 m-0">
           UNILAG Microfinance Bank

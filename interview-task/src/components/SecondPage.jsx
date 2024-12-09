@@ -15,7 +15,7 @@ function SecondPage() {
       <div className="flex gap-2">
         <InputField text={"I"} name={"Priopertor-name"} />
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mt-3">
         <InputField
           text={"Being the sole proprietor of the firm"}
           name={"priopertor-firm"}
@@ -24,7 +24,7 @@ function SecondPage() {
           which has been duly registered under the
         </span>
       </div>
-      <div>
+      <div className="mt-3">
         <span>
           Registration of Business Names act hereby request and authorise you to
           open an account in the name of the
@@ -33,19 +33,21 @@ function SecondPage() {
       <div>
         <span>above firm and honour the following signatures:</span>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between mt-3">
         <Signature
           text="signature"
           name={"m-s-1"}
           imgName={"mandatate-signature-1"}
+          label="Upload Signature"
         />
         <Signature
           text="signature"
           name={"m-s-2"}
           imgName={"mandatate-signature-2"}
+          label="Upload Signature"
         />
       </div>
-      <div>
+      <div className="mt-3">
         <span>
           For all purposes on behalf of the saud firm whether in credit or debit
           as on behalf of the said firm
@@ -108,26 +110,34 @@ function SecondPage() {
         <InputField text={"Dated this"} name={"proprietor-signature-date"} />
         <InputField text={"Day of"} name={"proprietor-signature-day"} />
       </div>
-      <div className="row flex">
+      <div className="row flex items-center mt-3">
         <div className="col-8">
           <InputField text="Full name" name={"proprietor-name"} />
         </div>
         <div className="col-4">
-          <Signature imgName={"priopertor-signature"} isDate={false} />
+          <Signature
+            imgName={"priopertor-signature"}
+            isDate={false}
+            label="Upload Signature"
+          />
         </div>
       </div>
       <div>
         <InputField text="Address" name={"proprietor-address"} />
       </div>
       <div className="row flex mt-5">
-        <div className="flex col-8 items-end gap-2">
+        <div className="flex col-8 items-center gap-2">
           <span className="whitespace-nowrap font-bold text-sm">
             Witnessed by:
           </span>
           <InputField text={"Full name"} name={"proprietor-witness-name"} />
         </div>
         <div className="col-4">
-          <Signature imgName={"priopertor-witness-signature"} isDate={false} />
+          <Signature
+            imgName={"priopertor-witness-signature"}
+            isDate={false}
+            label="Upload Signature"
+          />
         </div>
       </div>
       <div>
@@ -136,7 +146,7 @@ function SecondPage() {
           name={"proprietor-witness-occupation"}
         />
       </div>
-      <div>
+      <div className="mt-3">
         <InputField text={"Address"} name={"proprietor-witness-address"} />
       </div>
     </div>

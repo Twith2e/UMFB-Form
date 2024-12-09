@@ -2,11 +2,7 @@ import Header from "../components/Header";
 import Info from "../components/Info";
 import Table from "../components/Table";
 import Table2 from "../components/Table2";
-import Signature from "../components/Signature";
-import { useForm } from "./FormContext";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import SubmitButton from "./SubmitButton";
+import Signature from "./Signature";
 
 function FirstPage() {
   const info1 = [
@@ -75,7 +71,6 @@ function FirstPage() {
   ];
   return (
     <>
-      <ToastContainer />
       <Header />
       <div className="flex flex-col gap-3 my-5">
         <Info {...info1[0]} />
@@ -140,16 +135,22 @@ function FirstPage() {
         </span>
       </div>
       <div className="flex justify-evenly w-full">
-        <Signature name={"first-sign"} imgName={"first-sign"} />
-        <Signature name={"second-sign"} imgName={"second-sign"} />
-        <Signature name={"third-sign"} imgName={"third-sign"} />
-        <img
-          src="blob:http://localhost:5173/abf38045-6b05-46bc-8da2-94a166a9fc98"
-          alt=""
+        <Signature
+          name={"first-sign"}
+          imgName={"first-sign"}
+          label="Upload Signature"
+        />
+        <Signature
+          name={"second-sign"}
+          imgName={"second-sign"}
+          label="Upload Signature"
+        />
+        <Signature
+          name={"third-sign"}
+          imgName={"third-sign"}
+          label="Upload Signature"
         />
       </div>
-
-      <SubmitButton />
     </>
   );
 }

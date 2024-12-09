@@ -1,7 +1,8 @@
 import AcctNumber from "./AcctNumber";
 import Info from "./Info";
 import SpecimenHeader from "./SpecimenHeader";
-import SpecimenTable from "./SpecimenTable";
+import SpecimenInfo from "./SpecimenInfos";
+import SubmitButton from "./SubmitButton";
 
 export default function Specimen() {
   return (
@@ -14,15 +15,34 @@ export default function Specimen() {
           <AcctNumber />
         </div>
       </div>
-      <div>
-        <Info title={"Account Name"} length={20} />
-        <Info title={"Address"} length={20} />
-        <div className="flex justify-between">
-          <Info length={12} />
-          <Info title={"Tel."} length={11} />
+      <div className="flex flex-col gap-3">
+        <div className="col-12">
+          <Info
+            title={"Account Name"}
+            name={"Specimen Account Name"}
+            type={"text"}
+          />
+        </div>
+        <div className="col-12">
+          <Info
+            title={"Address"}
+            name={"Specimen Home Address"}
+            type={"text"}
+          />
+        </div>
+        <div className="col-12">
+          <Info title={"Tel."} name={"Specimen Phone Number"} type={"number"} />
         </div>
       </div>
-      <SpecimenTable />
+      {Array.from({ length: 2 }).map((_, index) => (
+        <div className="flex flex-col gap-2 mt-3">
+          <h1 className="text-red-900">{`Specimen ${index + 1}`}</h1>
+          <SpecimenInfo index={index} />
+        </div>
+      ))}
+      <div className="mt-3 flex justify-center items-center">
+        <SubmitButton />
+      </div>
     </div>
   );
 }

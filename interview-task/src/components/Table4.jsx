@@ -1,17 +1,8 @@
 import DatePicker from "react-datepicker";
-import { useState } from "react";
+import { useForm } from "./FormContext";
 
 export default function Table4() {
-  const [firstDate, setFirstDate] = useState("");
-  const [secondDate, setSecondDate] = useState("");
-
-  function handleFirstDateChange(date) {
-    setFirstDate(date);
-  }
-  function handleSecondDateChange(date) {
-    setSecondDate(date);
-  }
-
+  const { formData, updateField } = useForm();
   return (
     <table className="w-full border-collapse">
       <thead className="bg-[#7d3330] text-white border-x border-black">
@@ -28,8 +19,8 @@ export default function Table4() {
           <td className="border border-black">
             <DatePicker
               className="outline-none border-gray-500 w-full"
-              selected={firstDate}
-              onChange={handleFirstDateChange}
+              selected={formData[""]}
+              onChange=""
             />
           </td>
         </tr>
@@ -41,8 +32,8 @@ export default function Table4() {
           <td className=" border-r border-black">
             <DatePicker
               className="outline-none border-gray-500 w-full"
-              selected={secondDate}
-              onChange={handleSecondDateChange}
+              selected=""
+              onChange=""
             />
           </td>
         </tr>

@@ -17,8 +17,11 @@ function Home() {
     } else if (currentPage === "/third-page") {
       setNext("/fourth-page");
       setPrev("/second-page");
-    } else if (currentPage === "fourth-page") {
+    } else if (currentPage === "/fourth-page") {
+      setNext("/last-page");
       setPrev("/third-page");
+    } else {
+      setPrev("/fourth-page");
     }
   }, [currentPage]);
 
@@ -34,18 +37,21 @@ function Home() {
           </div>
           <div className="flex gap-3 items-center justify-center mt-8">
             <button
-              className="btn-warning text-white btn cursor-not-allowed"
+              className="text-black border-black btn cursor-not-allowed p-0"
               disabled={currentPage === "/" ? true : false}
             >
-              <Link className="no-underline text-white" to={prev}>
+              <Link
+                className="no-underline text-black hover:text-green-500 p-3"
+                to={prev}
+              >
                 PREV
               </Link>
             </button>
             <button
-              className="btn-success btn"
-              disabled={currentPage === "/fourth-page" ? true : false}
+              className="btn p-0 bg-black"
+              disabled={currentPage === "/last-page" ? true : false}
             >
-              <Link className="no-underline text-white" to={next}>
+              <Link className="no-underline text-white p-3" to={next}>
                 NEXT
               </Link>
             </button>
