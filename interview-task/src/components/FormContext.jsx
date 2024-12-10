@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import axios from "axios";
+import Required from "./RequiredFields";
 
 const FormContext = createContext();
 
@@ -12,6 +13,8 @@ export const FormProvider = ({ children }) => {
   const [errors, setErrors] = useState({});
   const [LGA, setLGA] = useState([]);
 
+  const requiredFields = Required();
+
   const updateField = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => ({
@@ -20,11 +23,31 @@ export const FormProvider = ({ children }) => {
     }));
   };
 
-  function validateForm(formData, unrequiredFields) {
-    console.log("Form Data:", formData);
-    console.log("Unrequired Fields:", unrequiredFields);
+  function validateEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
 
-    // Ensure formData is an object and unrequiredFields is an array
+  function newErrors(formData, requiredFields) {
+    const errors = {};
+
+    for (const field of requiredFields) {
+      const value = formData[field];
+
+      if (value === undefined || value === "") {
+        errors[field] = "This field is required";
+      } else if (
+        field.toLowerCase().includes("email") &&
+        !validateEmail(value)
+      ) {
+        errors[field] = "Invalid email address";
+      }
+    }
+
+    return errors; // Returns an object containing errors for all invalid fields
+  }
+
+  function validateForm(formData, unrequiredFields) {
     if (typeof formData !== "object" || Array.isArray(formData)) {
       console.error("formData must be an object.");
       return false;
@@ -35,47 +58,21 @@ export const FormProvider = ({ children }) => {
       return false;
     }
 
-    // Check if formData is empty (i.e., no fields at all)
-    if (Object.keys(formData).length === 0) {
-      console.error("Form is empty. Validation failed.");
-      return false; // Return false if formData is empty
+    const filteredRequiredFields = requiredFields.filter(
+      (field) => !unrequiredFields.includes(field)
+    );
+
+    const errors = newErrors(formData, filteredRequiredFields);
+
+    setErrors(errors); // Update the state with validation errors
+
+    if (Object.keys(errors).length > 0) {
+      console.error("Validation failed. Errors:", errors);
+      return false;
     }
 
-    // Iterate over all the required fields (those not in the unrequiredFields array)
-    // Assuming you have a list of all field names (required and optional) for your form
-    const requiredFields = ["name", "email", "message"]; // Example, replace with your actual required fields
-
-    for (const field of requiredFields) {
-      // If the field is required and it's not in the unrequiredFields list
-      if (!unrequiredFields.includes(field)) {
-        const value = formData[field];
-
-        // Check if the value is empty or undefined
-        if (value === undefined || value === "") {
-          console.error(
-            `Validation failed: ${field} is required and is empty.`
-          );
-          return false; // Form is invalid if any required field is empty
-        }
-      }
-    }
-
-    // If we reach here, all required fields are valid
     return true;
   }
-
-  // const exampleData = {
-  //   name: "John Doe",
-  //   email: "", // Empty email, which should fail validation if it's required
-  //   message: "Hello world!",
-  // };
-
-  // for (const [key, value] of Object.entries(exampleData)) {
-  //   if (!value || value.trim() === "") {
-  //     console.error(`Validation failed: ${key} is required and is empty.`);
-  //     return false; // Return false if any required field is empty
-  //   }
-  // }
 
   const loadLGA = async (state) => {
     try {
@@ -144,6 +141,7 @@ export const FormProvider = ({ children }) => {
         validateForm,
         loadLGA,
         LGA,
+        errors,
       }}
     >
       {children}

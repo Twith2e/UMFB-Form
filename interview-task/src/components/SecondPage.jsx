@@ -112,7 +112,7 @@ function SecondPage() {
       </div>
       <div className="row flex items-center mt-3">
         <div className="col-8">
-          <InputField text="Full name" name={"proprietor-name"} />
+          <InputField text="Full name" name={"Proprietor Full Name"} />
         </div>
         <div className="col-4">
           <Signature

@@ -21,13 +21,13 @@ export default function SpecimenInfo({ index }) {
             required={index === 0 ? true : false}
             type="text"
             placeholder="Title"
-            name={`Specimen-Title${index + 1}`}
-            value={formData[`Specimen-Title${index + 1}`] || ""}
+            name={`Specimen Title${index + 1}`}
+            value={formData[`Specimen Title${index + 1}`] || ""}
             onChange={handleChange}
           />
-          {errors[`Specimen-Title${index + 1}`] && (
+          {errors[`Specimen Title${index + 1}`] && (
             <span className="text-red-500 text-xs">
-              {errors[`Specimen-Title${index + 1}`]}
+              {errors[`Specimen Title${index + 1}`]}
             </span>
           )}
         </div>

@@ -43,7 +43,7 @@ export default function ThirdPage() {
           <Info
             type={"text"}
             title={"Mother's Maiden Name"}
-            name={"proprietor-maiden-name"}
+            name={"Proprietor Mother's Maiden Name"}
           />
         </div>
       </div>
@@ -112,7 +112,7 @@ export default function ThirdPage() {
           <Info
             type={"text"}
             title={"Nationality (for non-nigerians)"}
-            name={"proprietor-religion"}
+            name={"proprietor-nationality"}
             required={false}
           />
         </div>
@@ -160,6 +160,7 @@ export default function ThirdPage() {
             type={"text"}
             title={"Religion(optional)"}
             name={"proprietor-religion"}
+            required={false}
           />
         </div>
       </div>

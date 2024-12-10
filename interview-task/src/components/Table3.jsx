@@ -34,6 +34,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Collection Opening Form Request Date", date)
               }
+              name="Collection Opening Form Request Date"
               style={{ width: "100%" }}
             />
           </td>
@@ -46,6 +47,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Collection Opening Form Completed Date", date)
               }
+              name="Collection Opening Form Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -64,6 +66,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Submission Opening Form Request Date", date)
               }
+              name="Submission Opening Form Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -75,6 +78,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Submission Opening Form Completed Date", date)
               }
+              name="Submission Opening Form Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -91,6 +95,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Identification Request Date", date)
               }
+              name="Identification Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -100,6 +105,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Identification Completed Date", date)
               }
+              name="Identification Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -116,6 +122,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("International Passport Request Date", date)
               }
+              name="International Passport Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -141,6 +148,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Driver's License Request Date", date)
               }
+              name="Driver's License Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -150,25 +158,13 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Driver's License Completed Date", date)
               }
+              name="Driver's License Completed Date"
             />
           </td>
           <td className="border-r border-black">
             <input type="text" className="border-none outline-none" />
           </td>
         </tr>
-        {/* <tr className="border-black border">
-          <td className="border-r border-black"></td>
-          <td className="border-r border-black">(C) International Passport</td>
-          <td className="border-r border-black">
-            <input type="text" className="border-none outline-none" />
-          </td>
-          <td className="border-r border-black">
-            <input type="text" className="border-none outline-none" />
-          </td>
-          <td className="border-r border-black">
-            <input type="text" className="border-none outline-none" />
-          </td>
-        </tr> */}
         <tr className="border-black border">
           <td className="border-r border-black text-center">4</td>
           <td className="border-r border-black">Passport Photograph</td>
@@ -179,6 +175,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Passport Photograph Request Date", date)
               }
+              name="Passport Photograph Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -188,6 +185,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Passport Photograph Completed Date", date)
               }
+              name="Passport Photograph Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -206,6 +204,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Verification of Signature Request Date", date)
               }
+              name="Verification of Signature Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -217,6 +216,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Verification of Signature Completed Date", date)
               }
+              name="Verification of Signature Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -233,6 +233,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Signature Card Request Date", date)
               }
+              name="Signature Card Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -242,6 +243,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Signature Card Completed Date", date)
               }
+              name="Signature Card Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -256,6 +258,7 @@ export default function Table3() {
               className="outline-none border-none"
               selected={formData["Mandate Request Date"] || ""}
               onChange={(date) => updateField("Mandate Request Date", date)}
+              name="Mandate Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -263,6 +266,7 @@ export default function Table3() {
               className="outline-none border-none"
               selected={formData["Mandate Completed Date"] || ""}
               onChange={(date) => updateField("Mandate Completed Date", date)}
+              name="Mandate Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -279,6 +283,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Internal Reference Form Request Date", date)
               }
+              name="Internal Reference Form Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -290,6 +295,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Internal Reference Form Completed Date", date)
               }
+              name="Internal Reference Form Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -306,6 +312,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("External Reference Form Request Date", date)
               }
+              name="External Reference Form Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -317,6 +324,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("External Reference Form Completed Date", date)
               }
+              name="External Reference Form Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -333,6 +341,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Direct Reference Form Request Date", date)
               }
+              name="Direct Reference Form Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -342,6 +351,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Direct Reference Form Completed Date", date)
               }
+              name="Direct Reference Form Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -362,6 +372,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Application for Registration Request Date", date)
               }
+              name="Application for Registration Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -373,6 +384,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Application for Registration Completed Date", date)
               }
+              name="Application for Registration Completed Date"
             />
           </td>
           <td className="border-r border-black"></td>
@@ -391,6 +403,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Certificate of Registration Request Date", date)
               }
+              name="Certificate of Registration Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -402,6 +415,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Certificate of Registration Completed Date", date)
               }
+              name="Certificate of Registration Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -418,6 +432,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Search Report Request Date", date)
               }
+              name="Search Report Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -427,6 +442,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Search Report Completed Date", date)
               }
+              name="Search Report Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -443,6 +459,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Waived Document Request Date", date)
               }
+              name="Waived Document Request Date"
             />
           </td>
           <td className="border-r border-black">
@@ -452,6 +469,7 @@ export default function Table3() {
               onChange={(date) =>
                 updateField("Waived Document Completed Date", date)
               }
+              name="Waived Document Completed Date"
             />
           </td>
           <td className="border-r border-black">
@@ -484,19 +502,21 @@ export default function Table3() {
           <td className="border-r border-black">
             <DatePicker
               className="outline-none border-none"
-              selected={formData["Deferred Period Request Date"] || ""}
+              selected={formData["Deferral Period Request Date"] || ""}
               onChange={(date) =>
-                updateField("Deferred Period Request Date", date)
+                updateField("Deferral Period Request Date", date)
               }
+              name="Deferral Period Request Date"
             />
           </td>
           <td className="border-r border-black">
             <DatePicker
               className="outline-none border-none"
-              selected={formData["Deferred Period Completed Date"] || ""}
+              selected={formData["Deferral Period Completed Date"] || ""}
               onChange={(date) =>
-                updateField("Deferred Period Completed Date", date)
+                updateField("Deferral Period Completed Date", date)
               }
+              name="Deferral Period Completed Date"
             />
           </td>
           <td className="border-r border-black">

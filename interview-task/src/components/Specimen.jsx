@@ -40,6 +40,10 @@ export default function Specimen() {
           <SpecimenInfo index={index} />
         </div>
       ))}
+
+      <div className="mt-3 flex justify-center items-center">
+        <SubmitButton />
+      </div>
     </div>
   );
 }
