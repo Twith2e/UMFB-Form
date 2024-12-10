@@ -2,11 +2,9 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useForm } from "./FormContext";
 
-export default function DropDown() {
+export default function DropDown({ stateName, LGAName }) {
   const [allStates, setAllStates] = useState([]);
   const [LGA, setLGA] = useState([]);
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedLGA, setSelectedLGA] = useState("");
   const { formData, updateField } = useForm();
 
   const fetchStates = async () => {
@@ -26,31 +24,29 @@ export default function DropDown() {
   }, []);
 
   const handleStateChange = (e) => {
-    setSelectedState(e.target.value);
     loadLGA(e.target.value);
-    updateField("Proprietor State of Origin", e.target.value);
-    setSelectedLGA(""); // Reset LGA selection on state change
+    updateField(stateName, e.target.value);
+    updateField(LGAName, "");
   };
 
   const handleLGAChange = (e) => {
-    setSelectedLGA(e.target.value);
-    updateField("Proprietor LGA", e.target.value);
+    updateField(LGAName, e.target.value);
   };
 
   return (
-    <div>
-      <div className="flex flex-col gap-2">
-        {/* State Dropdown */}
+    <div className="row flex justify-between">
+      <div className="flex col-5 gap-2 items-center">
         <label
           htmlFor="stateSelect"
-          className="font-semibold text-lg text-gray-700"
+          className="font-bold text-sm whitespace-nowrap"
         >
-          Select State:
+          State:
         </label>
         <select
           id="stateSelect"
           onChange={handleStateChange}
-          value={selectedState}
+          value={formData[stateName] || ""}
+          name={stateName}
           className="block w-full py-2 pl-3 pr-10 text-base border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-red-900"
         >
           <option value="" disabled>
@@ -64,18 +60,17 @@ export default function DropDown() {
         </select>
       </div>
 
-      <div className="flex flex-col gap-2 mt-4">
-        {/* LGA Dropdown */}
+      <div className="flex items-center gap-2 col-5">
         <label
           htmlFor="LGASelect"
-          className="font-semibold text-lg text-gray-700"
+          className="font-bold text-sm whitespace-nowrap"
         >
-          Select LGA:
+          LGA:
         </label>
         <select
           id="LGASelect"
           onChange={handleLGAChange}
-          value={selectedLGA}
+          value={formData[LGAName] || ""}
           className="block w-full py-2 pl-3 pr-10 text-base border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-red-900"
         >
           <option value="" disabled>

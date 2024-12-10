@@ -18,12 +18,13 @@ function Info({ title, type, name, required = true }) {
         onKeyDown={
           type === "number"
             ? (e) => {
-                if (["e", "E", "+", "-"].includes(e.key)) {
+                if (["e", "E", "+", "-", "0"].includes(e.key)) {
                   e.preventDefault(); // Block these keys
                 }
               }
             : undefined
         }
+        min={1}
         value={formData[name] || ""}
         onChange={handleChange}
         multiple={type === "file" ? true : false}

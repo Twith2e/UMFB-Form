@@ -9,63 +9,62 @@ function FirstPage() {
     {
       title: "BUSINESS NAME",
       type: "text",
-      name: "business-name",
+      name: "Business Name",
     },
     {
       title: "REGISTRATION NUMBER",
       type: "number",
-      name: "registration-number",
+      name: "Business Registration Number",
     },
     {
       title: "DATE OF REGISTRATION",
       type: "date",
-      name: "date-of-registration",
+      name: "Business Registration Date",
     },
     {
       title: "OFFICE TEL No",
       type: "number",
-      name: "officetel1",
+      name: "Business Telephone Number1",
     },
     {
       title: "TEL No 2",
       type: "number",
-      name: "officetel2",
+      name: "Business Telephone Number2",
     },
     {
       title: "NATURE OF BUSINESS",
       type: "text",
-      name: "nature-of-business",
+      name: "Nature of Business",
     },
     {
       title: "SECTOR",
       type: "text",
-      name: "sector",
+      name: "Business Sector",
     },
     {
       title: "EMAIL",
       type: "email",
-      name: "email",
+      name: "Business Email Address",
     },
     {
       title: "Monthly",
       type: "text",
-      name: "monthly-business-turnover",
+      name: "Business Monthly Turnover",
     },
     {
       title: "Annually",
       type: "text",
-      name: "annually-business-turnover",
+      name: "Business Annual Turnover",
     },
     {
       title: "NO. OF EMPLOYEES",
       type: "number",
-      name: "employee-count",
+      name: "Business Employee Size",
     },
     {
       title: "PROPOSED INITIAL DEPOSIT",
-      lilTitle: ["₦"],
       type: "number",
-      name: "proposed-initial-deposit",
+      name: "Business Proposed Initial Deposit",
     },
   ];
   return (

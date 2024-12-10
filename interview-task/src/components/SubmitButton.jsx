@@ -6,19 +6,18 @@ import { useState } from "react";
 
 export default function SubmitButton() {
   const { formData, imageData, validateForm } = useForm();
-  const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
   const unrequiredFields = ["proprietor-others", "proprietor-religion"];
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     const isFormValid = validateForm(formData, unrequiredFields);
-    console.log("Is form valid:", isFormValid); // Debug validation result
+    console.log("Is form valid:", isFormValid);
 
     if (!isFormValid) {
       toast.error("Fill all inputs");
-      return; // Prevent submission
+      return;
     }
 
     try {
@@ -53,10 +52,10 @@ export default function SubmitButton() {
     <>
       <button
         onClick={handleSubmit}
-        className="bg-blue-500 text-white p-2 rounded"
+        className="bg-[#7d3330] text-white p-2 rounded"
         disabled={isPending ? true : false}
       >
-        Submit Form
+        {isPending ? "Loading" : "Submit"}
       </button>
       <ToastContainer />
     </>

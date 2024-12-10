@@ -6,7 +6,7 @@ export default function NotFound() {
 
   return (
     <div className="h-screen flex flex-col justify-center items-center bg-gray-100 text-gray-800">
-      <h1 className="text-6xl font-bold text-red-500">404</h1>
+      <h1 className="text-6xl font-bold text-[#7d3330]">404</h1>
       <p className="text-2xl mt-4">
         Oops! The page you're looking for doesn't exist.
       </p>
@@ -15,7 +15,7 @@ export default function NotFound() {
       </p>
       <button
         onClick={() => navigate("/")}
-        className="mt-6 px-6 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 transition"
+        className="mt-6 px-6 py-2 bg-[#7d3330] text-white font-medium rounded hover:bg-[#904c49] transition"
       >
         Go Home
       </button>

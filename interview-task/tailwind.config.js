@@ -11,7 +11,10 @@ export default {
     extend: {
       fontFamily: {
         indie: ["Indie Flower", "cursive"],
-        arial: "sans-serif",
+        arial: ["Arial", "sans-serif"],
+      },
+      colors: {
+        error: "#f56565",
       },
     },
   },

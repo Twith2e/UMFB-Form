@@ -12,8 +12,9 @@ export const FormProvider = ({ children }) => {
   const [imagePreview, setImagePreview] = useState({});
   const [errors, setErrors] = useState({});
   const [LGA, setLGA] = useState([]);
+  const [signatoryCount, setCount] = useState(null);
 
-  const requiredFields = Required();
+  const { requiredFields } = Required();
 
   const updateField = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -142,6 +143,8 @@ export const FormProvider = ({ children }) => {
         loadLGA,
         LGA,
         errors,
+        setCount,
+        signatoryCount,
       }}
     >
       {children}

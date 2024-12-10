@@ -1,7 +1,7 @@
 import { useForm } from "./FormContext";
 
 function Table2() {
-  const { formData, updateField } = useForm();
+  const { formData, updateField, errors } = useForm();
   const handleChange = (e) => {
     const name = e.target.name;
     updateField(name, e.target.value);
@@ -24,28 +24,49 @@ function Table2() {
             <td className="border-r border-black flex items-center gap-2">
               <span className="font-bold pl-2">1</span>
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Bank1"] ? "placeholder:text-red-500" : ""
+                }`}
                 type="text"
-                name="bank-1"
-                value={formData["bank-1"] || ""}
+                name="Business Bank1"
+                placeholder={
+                  errors["Business Bank1"] || "Enter a business bank"
+                }
+                value={formData["Business Bank1"] || ""}
                 onChange={handleChange}
               />
             </td>
             <td className="border-r border-black">
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Account Name1"]
+                    ? "placeholder:text-red-500"
+                    : ""
+                }`}
                 type="text"
-                name="account-name-1"
-                value={formData["account-name-1"] || ""}
+                name="Business Account Name1"
+                placeholder={
+                  errors["Business Account Name1"] ||
+                  "Enter corresponding account name"
+                }
+                value={formData["Business Account Name1"] || ""}
                 onChange={handleChange}
               />
             </td>
             <td className="border-r border-black">
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Account Number1"]
+                    ? "placeholder:text-red-500"
+                    : ""
+                }`}
                 type="text"
-                name="account-number-1"
-                value={formData["account-number-1"] || ""}
+                name="Business Account Number1"
+                placeholder={
+                  errors["Business Account Number1"] ||
+                  "Enter corresponding account number"
+                }
+                value={formData["Business Account Number1"] || ""}
                 onChange={handleChange}
               />
             </td>
@@ -54,28 +75,49 @@ function Table2() {
             <td className="border-r h-full border-black flex items-center gap-2">
               <span className="font-bold pl-2">2</span>
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Bank2"] ? "placeholder:text-red-500" : ""
+                }`}
                 type="text"
-                name="bank-2"
-                value={formData["bank-2"] || ""}
+                name="Business Bank2"
+                placeholder={
+                  errors["Business Bank2"] || "Enter a business bank"
+                }
+                value={formData["Business Bank2"] || ""}
                 onChange={handleChange}
               />
             </td>
             <td className="border-r border-black">
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Account Name2"]
+                    ? "placeholder:text-red-500"
+                    : ""
+                }`}
                 type="text"
-                name="account-name-2"
-                value={formData["account-name-2"] || ""}
+                name="Business Account Name2"
+                placeholder={
+                  errors["Business Account Name2"] ||
+                  "Enter a corresponding account name"
+                }
+                value={formData["Business Account Name2"] || ""}
                 onChange={handleChange}
               />
             </td>
             <td className="border-r border-black">
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Account Number2"]
+                    ? "placeholder:text-red-500"
+                    : ""
+                }`}
                 type="text"
-                name="account-number-2"
-                value={formData["account-number-2"] || ""}
+                name="Business Account Number2"
+                placeholder={
+                  errors["Business Account Number2"] ||
+                  "Enter corresponding account number"
+                }
+                value={formData["Business Account Number2"] || ""}
                 onChange={handleChange}
               />
             </td>
@@ -84,28 +126,49 @@ function Table2() {
             <td className="border-r border-black flex justify-center w-full items-center gap-2">
               <span className="font-bold pl-2">3</span>
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Bank3"] ? "placeholder:text-red-500" : ""
+                }`}
                 type="text"
-                name="bank-3"
-                value={formData["bank-3"] || ""}
+                name="Business Bank3"
+                placeholder={
+                  errors["Business Bank3"] || "Enter a business bank"
+                }
+                value={formData["Business Bank3"] || ""}
                 onChange={handleChange}
               />
             </td>
             <td className="border-r border-black">
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Account Name3"]
+                    ? "placeholder:text-red-500"
+                    : ""
+                }`}
                 type="text"
-                name="account-name-3"
-                value={formData["account-name-3"] || ""}
+                name="Business Account Name3"
+                placeholder={
+                  errors["Business Account Name3"] ||
+                  "Enter a corresponding account name"
+                }
+                value={formData["Business Account Name3"] || ""}
                 onChange={handleChange}
               />
             </td>
             <td className="border-r border-black">
               <input
-                className="w-full h-[60px] border-none outline-none px-2"
+                className={`w-full h-[60px] border-none outline-none px-2 ${
+                  errors["Business Account Number3"]
+                    ? "placeholder:text-red-500"
+                    : ""
+                }`}
                 type="text"
-                name="account-number-3"
-                value={formData["account-number-3"] || ""}
+                name="Business Account Number3"
+                placeholder={
+                  errors["Business Account Number3"] ||
+                  "Enter a corresponding account number"
+                }
+                value={formData["Business Account Number3"] || ""}
                 onChange={handleChange}
               />
             </td>

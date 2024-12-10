@@ -3,8 +3,10 @@ import Info from "./Info";
 import SpecimenHeader from "./SpecimenHeader";
 import SpecimenInfo from "./SpecimenInfos";
 import SubmitButton from "./SubmitButton";
+import { useForm } from "./FormContext";
 
 export default function Specimen() {
+  const { signatoryCount } = useForm();
   return (
     <div>
       <div className="row flex items-center justify-between">
@@ -34,7 +36,7 @@ export default function Specimen() {
           <Info title={"Tel."} name={"Specimen Phone Number"} type={"number"} />
         </div>
       </div>
-      {Array.from({ length: 2 }).map((_, index) => (
+      {Array.from({ length: signatoryCount || 1 }).map((_, index) => (
         <div className="flex flex-col gap-2 mt-3">
           <h1 className="text-red-900">{`Specimen ${index + 1}`}</h1>
           <SpecimenInfo index={index} />

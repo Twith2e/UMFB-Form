@@ -15,13 +15,10 @@ function Home() {
       setNext("/third-page");
       setPrev("/");
     } else if (currentPage === "/third-page") {
-      setNext("/fourth-page");
-      setPrev("/second-page");
-    } else if (currentPage === "/fourth-page") {
       setNext("/last-page");
-      setPrev("/third-page");
+      setPrev("/second-page");
     } else {
-      setPrev("/fourth-page");
+      setPrev("/third-page");
     }
   }, [currentPage]);
 
@@ -37,8 +34,10 @@ function Home() {
           </div>
           <div className="flex gap-3 items-center justify-center mt-8">
             <button
-              className="text-black border-black btn cursor-not-allowed p-0"
-              disabled={currentPage === "/" ? true : false}
+              className={`text-black btn p-0 ${
+                currentPage === "/" ? "d-none" : ""
+              }`}
+              style={{ borderColor: "#7d3330" }}
             >
               <Link
                 className="no-underline text-black hover:text-green-500 p-3"
@@ -48,8 +47,10 @@ function Home() {
               </Link>
             </button>
             <button
-              className="btn p-0 bg-black"
-              disabled={currentPage === "/last-page" ? true : false}
+              className={`btn p-0 ${
+                currentPage === "/last-page" ? "d-none" : ""
+              }`}
+              style={{ background: "#7d3330" }}
             >
               <Link className="no-underline text-white p-3" to={next}>
                 NEXT
