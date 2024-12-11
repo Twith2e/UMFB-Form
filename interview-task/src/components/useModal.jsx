@@ -39,7 +39,7 @@ export default function Modal({ closeModal }) {
           className="w-full p-2 border border-gray-300 rounded mb-4"
         />
         <button
-          className="w-full bg-blue-500 text-white p-2 rounded"
+          className="w-full bg-red-900 text-white p-2 rounded"
           onClick={handleSubmit}
         >
           Pick
