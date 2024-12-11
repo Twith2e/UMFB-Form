@@ -3,6 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useState } from "react";
+import Required from "./RequiredFields";
 
 export default function SubmitButton() {
   const { formData, imageData, validateForm } = useForm();
@@ -10,6 +11,8 @@ export default function SubmitButton() {
   const [error, setError] = useState(null);
 
   const unrequiredFields = ["proprietor-others", "proprietor-religion"];
+
+  const { formCount } = Required();
 
   const handleSubmit = async () => {
     const isFormValid = validateForm(formData, unrequiredFields);

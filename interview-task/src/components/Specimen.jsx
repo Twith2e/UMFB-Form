@@ -6,7 +6,15 @@ import SubmitButton from "./SubmitButton";
 import { useForm } from "./FormContext";
 
 export default function Specimen() {
-  const { signatoryCount } = useForm();
+  const { formCount, setFormCount } = useForm();
+
+  const addSpecimen = () => {
+    setFormCount((prev) => [...prev, { id: prev[prev.length - 1].id + 1 }]);
+  };
+
+  const removeSpecimen = (id) => {
+    setFormCount((prev) => prev.filter((count) => count.id !== id));
+  };
   return (
     <div>
       <div className="row flex items-start justify-between">
@@ -36,12 +44,30 @@ export default function Specimen() {
           <Info title={"Tel."} name={"Specimen Phone Number"} type={"number"} />
         </div>
       </div>
-      {Array.from({ length: signatoryCount || 1 }).map((_, index) => (
+      {formCount.map((count) => (
         <div className="flex flex-col gap-2 mt-3">
-          <h1 className="text-red-900">{`Specimen ${index + 1}`}</h1>
-          <SpecimenInfo index={index} />
+          {count.id > 1 && (
+            <div className="text-right">
+              <button
+                className="bg-red-500 text-white px-2 py-1"
+                onClick={() => removeSpecimen(count.id)}
+              >
+                Remove Specimen
+              </button>
+            </div>
+          )}
+          <h1 className="text-red-900">{`Specimen ${count.id}`}</h1>
+          <SpecimenInfo index={count.id} />
         </div>
       ))}
+      <div className="text-center mt-40 mb-20">
+        <button
+          onClick={addSpecimen}
+          className="bg-green-500 text-white px-2 py-1"
+        >
+          Add Specimen
+        </button>
+      </div>
 
       <div className="mt-3 flex justify-center items-center">
         <SubmitButton />

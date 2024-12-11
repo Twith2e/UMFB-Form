@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import Required from "./RequiredFields";
 
@@ -12,27 +12,29 @@ export const FormProvider = ({ children }) => {
   const [imagePreview, setImagePreview] = useState({});
   const [errors, setErrors] = useState({});
   const [LGA, setLGA] = useState([]);
-  const [signatoryCount, setCount] = useState(null);
+  const [formCount, setFormCount] = useState(() => {
+    const savedCount = localStorage.getItem("formCount");
+    return savedCount ? JSON.parse(savedCount) : [{ id: 1 }];
+  });
+  const [formSubmitted, setFormSubmitted] = useState(false); // State to track form submission
 
-  const { requiredFields } = Required();
+  const { allRequiredFields } = Required();
 
-  const updateField = (name, value) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({
-      ...prev,
-      [name]: value ? undefined : "This field is required",
-    }));
-  };
-
+  // Function to validate email
   function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
 
-  function newErrors(formData, requiredFields) {
+  useEffect(() => {
+    localStorage.setItem("formCount", JSON.stringify(formCount));
+  }, [formCount]);
+
+  // Function to generate errors
+  function newErrors(formData, allRequiredFields) {
     const errors = {};
 
-    for (const field of requiredFields) {
+    for (const field of allRequiredFields) {
       const value = formData[field];
 
       if (value === undefined || value === "") {
@@ -45,9 +47,18 @@ export const FormProvider = ({ children }) => {
       }
     }
 
-    return errors; // Returns an object containing errors for all invalid fields
+    return errors;
   }
 
+  // UseEffect to update errors whenever formData changes, but only if form is submitted
+  useEffect(() => {
+    if (formSubmitted) {
+      const errors = newErrors(formData, allRequiredFields);
+      setErrors(errors); // Update errors state only if form is submitted
+    }
+  }, [formData, formSubmitted, allRequiredFields]); // Track form submission to trigger validation
+
+  // Function to validate form and return if valid
   function validateForm(formData, unrequiredFields) {
     if (typeof formData !== "object" || Array.isArray(formData)) {
       console.error("formData must be an object.");
@@ -59,21 +70,23 @@ export const FormProvider = ({ children }) => {
       return false;
     }
 
-    const filteredRequiredFields = requiredFields.filter(
+    const filteredRequiredFields = allRequiredFields.filter(
       (field) => !unrequiredFields.includes(field)
     );
 
     const errors = newErrors(formData, filteredRequiredFields);
 
-    setErrors(errors); // Update the state with validation errors
+    setErrors(errors); // Ensure errors are always updated with the latest validation
 
+    return Object.keys(errors).length === 0;
+  }
+
+  // useEffect to log errors after state change
+  useEffect(() => {
     if (Object.keys(errors).length > 0) {
       console.error("Validation failed. Errors:", errors);
-      return false;
     }
-
-    return true;
-  }
+  }, [errors]);
 
   const loadLGA = async (state) => {
     try {
@@ -81,17 +94,20 @@ export const FormProvider = ({ children }) => {
         `https://nga-states-lga.onrender.com/?state=${state}`
       );
 
-      // Ensure the response is an array, even if the data is not as expected
       const lgas = Array.isArray(res.data) ? res.data : [];
-
-      // Update the LGA state with a validated array
       setLGA(lgas);
     } catch (error) {
       console.error("Error fetching LGAs:", error);
-
-      // In case of an error, set LGA to an empty array to prevent mapping errors
-      setLGA([]);
+      setLGA([]); // Ensure fallback
     }
+  };
+
+  const updateField = (name, value) => {
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({
+      ...prev,
+      [name]: value ? undefined : "This field is required",
+    }));
   };
 
   const updateImage = (image) => {
@@ -128,6 +144,10 @@ export const FormProvider = ({ children }) => {
       .catch((err) => console.error("Error uploading images:", err));
   };
 
+  const handleSubmit = () => {
+    setFormSubmitted(true); // Set formSubmitted to true when the submit button is clicked
+  };
+
   return (
     <FormContext.Provider
       value={{
@@ -142,9 +162,9 @@ export const FormProvider = ({ children }) => {
         validateForm,
         loadLGA,
         LGA,
-        errors,
-        setCount,
-        signatoryCount,
+        formCount,
+        setFormCount,
+        handleSubmit, // Expose handleSubmit to be used by the form submit button
       }}
     >
       {children}
