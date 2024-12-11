@@ -27,17 +27,36 @@ const sendEmail = async (req, res) => {
   }
 
   try {
-    // Generate a PDF from formData
     const pdfDoc = new jsPDF();
-    pdfDoc.text("Form Data Submission", 10, 10);
 
-    const pageHeight = pdfDoc.internal.pageSize.height; // Page height
-    const pageWidth = pdfDoc.internal.pageSize.width; // Page width
     const marginX = 10; // Left margin
-    const lineHeight = 10; // Line height for each text
+    const pageWidth = pdfDoc.internal.pageSize.width; // Page width
+    const pageHeight = pdfDoc.internal.pageSize.height; // Page height
     const maxWidth = pageWidth - marginX * 2; // Max width for text
-    let cursorY = 20; // Initial Y position
+    const lineHeight = 10; // Line height for text
 
+    const title = "Corporate Account Form";
+    const titleFontSize = 16; // Title font size
+    const titleYPosition = 20; // Y-position for the title
+    pdfDoc.setFont("helvetica", "bold");
+    pdfDoc.setFontSize(titleFontSize);
+
+    // Center the title
+    const titleWidth = pdfDoc.getTextWidth(title);
+    const titleXPosition = (pageWidth - titleWidth) / 2;
+
+    pdfDoc.text(title, titleXPosition, titleYPosition);
+
+    // Add underline
+    const underlinePadding = 2; // Space between text and underline
+    pdfDoc.line(
+      titleXPosition,
+      titleYPosition + underlinePadding,
+      titleXPosition + titleWidth,
+      titleYPosition + underlinePadding
+    );
+
+    let cursorY = titleYPosition + 10;
     Object.keys(formData).forEach((key) => {
       const text = `${key}: ${formData[key]}`;
 

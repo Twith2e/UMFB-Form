@@ -277,14 +277,14 @@ export default function ThirdPage() {
                   text={"Owned"}
                   checked={formData[`House${index + 1}`] === "Owned"}
                   onChange={() =>
-                    handleCheckboxChange(`House&{index+1}`, "Owned")
+                    handleCheckboxChange(`House${index + 1}`, "Owned")
                   }
                 />
                 <Checkbox
                   text={"Rented"}
                   checked={formData[`House${index + 1}`] === "Rented"}
                   onChange={() =>
-                    handleCheckboxChange(`House&{index+1}`, "Rented")
+                    handleCheckboxChange(`House${index + 1}`, "Rented")
                   }
                 />
                 <Checkbox
