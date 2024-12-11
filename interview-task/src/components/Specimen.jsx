@@ -9,7 +9,7 @@ export default function Specimen() {
   const { signatoryCount } = useForm();
   return (
     <div>
-      <div className="row flex items-center justify-between">
+      <div className="row flex items-start justify-between">
         <div className="col-5">
           <SpecimenHeader />
         </div>
