@@ -72,55 +72,58 @@ function FirstPage() {
       <Header />
       <div className="flex flex-col gap-3 my-5">
         <Info {...info1[0]} />
-        <div className="flex justify-between">
-          <Info {...info1[1]} />
-          <Info {...info1[2]} />
+        <div className="d-flex flex-column flex-lg-row gap-3 justify-content-lg-between">
+          <div className="col-12 col-lg-5">
+            <Info {...info1[1]} />
+          </div>
+          <div className="col-12 col-lg-5">
+            <Info {...info1[2]} />
+          </div>
         </div>
       </div>
       <Table />
       <div className="flex flex-col gap-3 my-5">
-        <div className="flex justify-between">
-          <div className="col-5">
+        <div className="d-flex flex-lg-row flex-column justify-content-lg-between gap-3">
+          <div className="col-12 col-lg-5">
             <Info {...info1[3]} />
           </div>
-          <div className="col-5">
+          <div className="col-12 col-lg-5">
             <Info {...info1[4]} />
           </div>
         </div>
         <div>
           <Info {...info1[5]} />
         </div>
-        <div className="flex justify-between row">
-          <div className="col-5">
+        <div className="d-flex flex-column gap-3 flex-lg-row justify-content-lg-between">
+          <div className="col-12 col-lg-5">
             <Info {...info1[6]} />
           </div>
-          <div className="col-5">
+          <div className="col-12 col-lg-5">
             <Info {...info1[7]} />
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="d-flex flex-column flex-lg-row align-items-lg-center gap-4 gap-lg-3">
           <span className="font-bold whitespace-nowrap">
             BUSINESS TURNOVER:
           </span>
-          <div className="row w-full">
-            <div className="col-5">
+          <div className="row w-full d-flex flex-column gap-3 gap-lg-0 flex-lg-row">
+            <div className="col-12 col-lg-5">
               <Info {...info1[8]} />
             </div>
-            <div className="col-5">
+            <div className="col-12 col-lg-5">
               <Info {...info1[9]} />
             </div>
           </div>
         </div>
-        <div className="flex justify-between">
-          <div className="col-5">
+        <div className="d-flex flex-column gap-3 flex-lg-row justify-content-lg-between">
+          <div className="col-12 col-lg-5">
             <Info {...info1[10]} />
           </div>
-          <div className="col-5">
+          <div className="col-12 col-lg-5">
             <Info {...info1[11]} />
           </div>
         </div>
       </div>
-
       <Table2 />
       <div className="flex flex-col gap-4 my-5 leading-normal">
         <span className="leading-5">
@@ -132,22 +135,28 @@ function FirstPage() {
           form.
         </span>
       </div>
-      <div className="flex justify-evenly w-full">
-        <Signature
-          name={"first-sign"}
-          imgName={"first-sign"}
-          label="Upload Signature"
-        />
-        <Signature
-          name={"second-sign"}
-          imgName={"second-sign"}
-          label="Upload Signature"
-        />
-        <Signature
-          name={"third-sign"}
-          imgName={"third-sign"}
-          label="Upload Signature"
-        />
+      <div className="flex w-full flex-wrap gap-y-5">
+        <div className="col-12 col-md-4">
+          <Signature
+            name={"first-sign"}
+            imgName={"first-sign"}
+            label="Upload Signature"
+          />
+        </div>
+        <div className="col-12 col-md-4">
+          <Signature
+            name={"second-sign"}
+            imgName={"second-sign"}
+            label="Upload Signature"
+          />
+        </div>
+        <div className="col-12 col-md-4">
+          <Signature
+            name={"third-sign"}
+            imgName={"third-sign"}
+            label="Upload Signature"
+          />
+        </div>
       </div>
     </>
   );

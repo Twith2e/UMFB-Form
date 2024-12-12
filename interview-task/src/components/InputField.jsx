@@ -8,7 +8,7 @@ export default function InputField({ text, name, required = true }) {
   };
   return (
     <div className="flex gap-2 w-full items-end">
-      <span className="whitespace-nowrap font-bold text-base">{text}</span>
+      <span className="md:whitespace-nowrap font-bold text-base">{text}</span>
       <input
         type="text"
         name={name}

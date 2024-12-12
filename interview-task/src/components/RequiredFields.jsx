@@ -1,11 +1,8 @@
 import { useMemo } from "react";
 
-export default function Required() {
-  // Parse `formCount` from localStorage
-  const formCount = JSON.parse(localStorage.getItem("formCount")) || [];
-
-  // Static required fields
-  const requiredFields = [
+export default function Required({ requiredFields = [], formCount = [] }) {
+  // Static required fields with a default fallback
+  const defaultRequiredFields = [
     "Business Name",
     "Business Registration Number",
     "Business Registration Date",
@@ -43,6 +40,12 @@ export default function Required() {
     "Proprietor-witness-occupation",
     "Proprietor-witness-address",
   ];
+
+  // Merge default fields with props
+  const staticFields = useMemo(
+    () => [...defaultRequiredFields, ...requiredFields],
+    [requiredFields]
+  );
 
   // Memoize dynamic fields based on formCount
   const dynamicFields = useMemo(() => {
@@ -98,12 +101,12 @@ export default function Required() {
       `Affiliated/Parent Company${count.id}`,
       `Country of Affiliated/Parent Company${count.id}`,
     ]);
-  }, [formCount]); // Only recompute dynamicFields when formCount changes
+  }, [formCount]);
 
   // Combine static and dynamic fields
   const allRequiredFields = useMemo(() => {
-    return [...requiredFields, ...dynamicFields];
-  }, [requiredFields, dynamicFields]);
+    return [...staticFields, ...dynamicFields];
+  }, [staticFields, dynamicFields]);
 
-  return { allRequiredFields, formCount };
+  return { allRequiredFields };
 }

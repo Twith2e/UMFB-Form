@@ -29,7 +29,7 @@ export default function AcctNumber() {
   }, [accountNumber, updateField]); // Remove formData dependency
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center md:flex-row-reverse md:mb-3 md:gap-3">
       <table className="border-separate">
         <tbody>
           <tr className="flex">
@@ -49,7 +49,7 @@ export default function AcctNumber() {
           </tr>
         </tbody>
       </table>
-      <span>Account No.</span>
+      <span className="font-semibold">Account No.</span>
     </div>
   );
 }

@@ -12,11 +12,11 @@ export default function SubmitButton() {
 
   const unrequiredFields = ["proprietor-others", "proprietor-religion"];
 
-  const { formCount } = Required();
-
   const handleSubmit = async () => {
     const isFormValid = validateForm(formData, unrequiredFields);
     console.log("Is form valid:", isFormValid);
+
+    console.log(formData);
 
     if (!isFormValid) {
       toast.error("Fill all inputs");

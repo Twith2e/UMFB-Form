@@ -5,7 +5,9 @@ function SecondPage() {
   return (
     <div className="font-semibold font-arial">
       <div className="bg-[#7d3330] text-white text-center text-3xl mb-5">
-        <span>MANDATE FOR SOLE PROPRIETORSHIP</span>
+        <span className="md:text-[30px] text-[12px]">
+          MANDATE FOR SOLE PROPRIETORSHIP
+        </span>
       </div>
       <div>
         <span>
@@ -15,14 +17,12 @@ function SecondPage() {
       <div className="flex gap-2">
         <InputField text={"I"} name={"Priopertor-name"} />
       </div>
-      <div className="flex gap-2 mt-3">
+      <div className="flex gap-2 mt-3 flex-wrap">
         <InputField
           text={"Being the sole proprietor of the firm"}
           name={"priopertor-firm"}
         />
-        <span className="whitespace-nowrap">
-          which has been duly registered under the
-        </span>
+        <span>which has been duly registered under the</span>
       </div>
       <div className="mt-3">
         <span>
@@ -33,7 +33,7 @@ function SecondPage() {
       <div>
         <span>above firm and honour the following signatures:</span>
       </div>
-      <div className="flex justify-between mt-3">
+      <div className="d-flex flex-column flex-lg-row gap-3 mt-3">
         <Signature
           text="signature"
           name={"m-s-1"}
@@ -125,8 +125,8 @@ function SecondPage() {
       <div>
         <InputField text="Address" name={"proprietor-address"} />
       </div>
-      <div className="row flex mt-5">
-        <div className="flex col-8 items-center gap-2">
+      <div className="row d-flex mt-5">
+        <div className="d-flex flex-column col-8 md:items-center gap-2">
           <span className="whitespace-nowrap font-bold text-sm">
             Witnessed by:
           </span>

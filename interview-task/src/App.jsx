@@ -16,7 +16,6 @@ function App() {
         <Route path="/last-page" element={<Specimen />} />
       </Route>
       <Route path="*" element={<NotFound />} />
-      <Route path="/states" element={<DropDown />} />
     </Routes>
   );
 }

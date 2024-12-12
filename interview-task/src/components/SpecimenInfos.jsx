@@ -11,7 +11,7 @@ export default function SpecimenInfo({ index }) {
   return (
     <div className="flex flex-col gap-3 mt-3">
       <div className="row flex justify-between">
-        <div className="col-5 flex flex-col gap-2">
+        <div className="col-12 col-lg-5 flex flex-col gap-2">
           <label className="font-bold" htmlFor={`Specimen-Title${index + 1}`}>
             Title(Mr/Mrs etc)
           </label>
@@ -31,7 +31,7 @@ export default function SpecimenInfo({ index }) {
             </span>
           )}
         </div>
-        <div className="col-5 flex flex-col gap-2">
+        <div className="col-12 col-lg-5 flex flex-col gap-2">
           <label className="font-bold" htmlFor={`Specimen-Name${index + 1}`}>
             Name
           </label>
@@ -53,7 +53,7 @@ export default function SpecimenInfo({ index }) {
         </div>
       </div>
       <div className="row flex justify-between">
-        <div className="col-5 flex flex-col gap-2">
+        <div className="col-12 col-lg-5 flex flex-col gap-2">
           <label
             className="font-bold"
             htmlFor={`Specimen Designation${index + 1}`}
@@ -76,7 +76,7 @@ export default function SpecimenInfo({ index }) {
             </span>
           )}
         </div>
-        <div className="col-5 flex flex-col gap-2">
+        <div className="col-12 col-lg-5 flex flex-col gap-2">
           <label
             className="font-bold"
             htmlFor={`Specimen BVN Number${index + 1}`}
@@ -100,8 +100,8 @@ export default function SpecimenInfo({ index }) {
           )}
         </div>
       </div>
-      <div className="row flex justify-between">
-        <div className="flex justify-between p-2 border border-red-700 col-5">
+      <div className="row flex lg:justify-between">
+        <div className="flex justify-between p-2 border border-red-700 col-12 col-lg-5">
           <Signature
             imgName={`Specimen-Signature${index + 1}`}
             isDate={false}
@@ -115,7 +115,7 @@ export default function SpecimenInfo({ index }) {
             required={index === 0 ? true : false}
           />
         </div>
-        <div className="col-5 flex flex-col gap-2">
+        <div className="col-12 col-lg-5 flex flex-col gap-2">
           <label
             className="font-bold"
             htmlFor={`Specimen Signature Class${index + 1}`}

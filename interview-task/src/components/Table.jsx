@@ -10,11 +10,11 @@ function Table() {
   return (
     <div>
       <table className="w-full border-collapse border border-black text-white">
-        <thead className="bg-[#7d3330] py-4">
-          <tr>
-            <th className="p-4">OFFICE ADDRESS/REGISTERED OFFICE</th>
-            <th className="p-4">FOREIGN OFFICE ADDRESS (IF ANY)</th>
-            <th className="p-4">MAILING ADDRESS</th>
+        <thead className="bg-[#7d3330]">
+          <tr className="text-[12px]">
+            <th className="p-2">OFFICE ADDRESS/REGISTERED OFFICE</th>
+            <th className="p-2">FOREIGN OFFICE ADDRESS (IF ANY)</th>
+            <th className="p-2">MAILING ADDRESS</th>
           </tr>
         </thead>
         <tbody>

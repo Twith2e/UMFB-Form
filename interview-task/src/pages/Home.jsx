@@ -25,7 +25,7 @@ function Home() {
   return (
     <div className="container-fluid py-4">
       <div className="row">
-        <div className="col-10 mx-auto">
+        <div className="col-12 px-md-5 mx-auto">
           <header>
             <Navbar />
           </header>

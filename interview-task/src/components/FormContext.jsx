@@ -12,13 +12,18 @@ export const FormProvider = ({ children }) => {
   const [imagePreview, setImagePreview] = useState({});
   const [errors, setErrors] = useState({});
   const [LGA, setLGA] = useState([]);
+
   const [formCount, setFormCount] = useState(() => {
     const savedCount = localStorage.getItem("formCount");
-    return savedCount ? JSON.parse(savedCount) : [{ id: 1 }];
-  });
-  const [formSubmitted, setFormSubmitted] = useState(false); // State to track form submission
+    const parsedCount = savedCount ? JSON.parse(savedCount) : [{ id: 1 }]; // Pass the parsed array
 
-  const { allRequiredFields } = Required();
+    // Ensure setUpdatedCount gets the correct structure
+    return parsedCount; // Return the parsed array for formCount
+  });
+
+  const { allRequiredFields } = Required({ formCount });
+
+  const [formSubmitted, setFormSubmitted] = useState(false); // State to track form submission
 
   // Function to validate email
   function validateEmail(email) {
@@ -56,7 +61,7 @@ export const FormProvider = ({ children }) => {
       const errors = newErrors(formData, allRequiredFields);
       setErrors(errors); // Update errors state only if form is submitted
     }
-  }, [formData, formSubmitted, allRequiredFields]); // Track form submission to trigger validation
+  }, [formData, formSubmitted, allRequiredFields, formCount]); // Track form submission to trigger validation
 
   // Function to validate form and return if valid
   function validateForm(formData, unrequiredFields) {

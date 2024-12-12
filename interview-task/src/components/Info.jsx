@@ -8,7 +8,7 @@ function Info({ title, type, name, required = true }) {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-sm font-bold whitespace-nowrap">
+      <span className="text-sm font-bold md:whitespace-nowrap">
         {title ? `${title}:` : ""}
       </span>
       <input
@@ -18,7 +18,7 @@ function Info({ title, type, name, required = true }) {
         onKeyDown={
           type === "number"
             ? (e) => {
-                if (["e", "E", "+", "-", "0"].includes(e.key)) {
+                if (["e", "E", "+", "-"].includes(e.key)) {
                   e.preventDefault(); // Block these keys
                 }
               }
