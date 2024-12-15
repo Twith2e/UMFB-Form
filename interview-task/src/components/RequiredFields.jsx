@@ -50,6 +50,7 @@ export default function Required({ requiredFields = [], formCount = [] }) {
     "Specimen Account Name",
     "Specimen Home Address",
     "Specimen Phone Number",
+    "Specimen Account Number",
   ];
 
   // Merge default fields with props
