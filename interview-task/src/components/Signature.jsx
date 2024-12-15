@@ -11,6 +11,7 @@ function Signature({ name, imgName, isDate = true, label, required = true }) {
     handleImageUpload,
     retainImage,
     imagePreview,
+    setImageData,
   } = useForm();
 
   const handleImageChange = (e) => {
@@ -20,6 +21,7 @@ function Signature({ name, imgName, isDate = true, label, required = true }) {
       const reader = new FileReader();
       reader.onloadend = () => {
         retainImage(`${imgName}-preview`, reader.result); // Persist preview in formData
+        updateField(imgName, "true");
       };
       reader.readAsDataURL(file);
     }
@@ -27,7 +29,9 @@ function Signature({ name, imgName, isDate = true, label, required = true }) {
 
   const handleImageClear = () => {
     retainImage(`${imgName}-preview`, null); // Clear preview from formData
-    updateField(imgName, null);
+    setImageData((prevData) =>
+      prevData.filter((image) => image.name !== imgName)
+    );
   };
 
   return (

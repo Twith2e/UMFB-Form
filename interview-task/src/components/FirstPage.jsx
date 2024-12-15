@@ -138,22 +138,22 @@ function FirstPage() {
       <div className="flex w-full flex-wrap gap-y-5">
         <div className="col-12 col-md-4">
           <Signature
-            name={"first-sign"}
-            imgName={"first-sign"}
+            name={"First Business Signature Date"}
+            imgName={"First Business Signature"}
             label="Upload Signature"
           />
         </div>
         <div className="col-12 col-md-4">
           <Signature
-            name={"second-sign"}
-            imgName={"second-sign"}
+            name={"Second Business Signature Date"}
+            imgName={"Second Business Signature"}
             label="Upload Signature"
           />
         </div>
         <div className="col-12 col-md-4">
           <Signature
-            name={"third-sign"}
-            imgName={"third-sign"}
+            name={"Third Business Signature Date"}
+            imgName={"Third Business Signature"}
             label="Upload Signature"
           />
         </div>

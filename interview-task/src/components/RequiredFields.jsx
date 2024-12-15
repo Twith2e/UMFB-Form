@@ -26,19 +26,30 @@ export default function Required({ requiredFields = [], formCount = [] }) {
     "Business Account Number1",
     "Business Account Number2",
     "Business Account Number3",
-    "Proprietor-name",
-    "Proprietor-firm",
-    "m-s-1",
-    "m-s-2",
-    "proprietor-signature-date",
-    "proprietor-signature-day",
-    "Proprietor Full Name",
-    "Proprietor-signature",
-    "Proprietor-address",
-    "Proprietor-witness-name",
-    "Proprietor-witness-signature",
-    "Proprietor-witness-occupation",
-    "Proprietor-witness-address",
+    "First Business Signature Date",
+    "First Business Signature",
+    "Second Business Signature Date",
+    "Second Business Signature",
+    "Third Business Signature Date",
+    "Third Business Signature",
+    "Mandate Sole Proprietor Name",
+    "Mandate Sole Proprietor Firm",
+    "First Business Reg Signature Date",
+    "Second Business Reg Signature Date",
+    "First Business Reg Signature",
+    "Second Business Reg Signature",
+    "Mandate Sole Proprietor Signature Date",
+    "Mandate Sole Proprietor Signature Day",
+    "Mandate Sole Proprietor Full Name",
+    "Mandate Sole Priopertor Signature",
+    "Mandate Sole Proprietor Address",
+    "Mandate Sole Proprietor Witness Name",
+    "Mandate Sole Priopertor Witness Signature",
+    "Mandate Sole Proprietor Witness Occupation",
+    "Mandate Sole Proprietor Witness Address",
+    "Specimen Account Name",
+    "Specimen Home Address",
+    "Specimen Phone Number",
   ];
 
   // Merge default fields with props
@@ -50,17 +61,15 @@ export default function Required({ requiredFields = [], formCount = [] }) {
   // Memoize dynamic fields based on formCount
   const dynamicFields = useMemo(() => {
     return formCount.flatMap((count) => [
-      `Identification${count.id}`,
-      `House${count.id}`,
-      `Gender${count.id}`,
-      `Marital-Status${count.id}`,
       `Proprietor Surname${count.id}`,
       `Proprietor Firstname${count.id}`,
       `Proprietor Other Names${count.id}`,
       `Proprietor Mother's Maiden Name${count.id}`,
+      `Proprietor's Gender${count.id}`,
       `Proprietor DOB${count.id}`,
       `Proprietor Title${count.id}`,
       `Proprietor Place of Birth${count.id}`,
+      `Proprietor's Marital Status${count.id}`,
       `Proprietor's Residence Permit Number${count.id}`,
       `Proprietor's Permit Issue Date${count.id}`,
       `Proprietor's Permit Expiry Date${count.id}`,
@@ -74,9 +83,11 @@ export default function Required({ requiredFields = [], formCount = [] }) {
       `Proprietor's Residence City/Town${count.id}`,
       `Proprietor's Residence LGA${count.id}`,
       `Proprietor's Residence State${count.id}`,
+      `House Ownership Status${count.id}`,
       `First Proprietor's Phone Number${count.id}`,
       `Second Proprietor's Phone Number${count.id}`,
-      `Proprietor's Email${count.id}`,
+      `Proprietor Email${count.id}`,
+      `Identification${count.id}`,
       `Other means of Identification${count.id}`,
       `Proprietor's ID Issue Date${count.id}`,
       `Proprietor's ID Expiry Date${count.id}`,
@@ -98,8 +109,15 @@ export default function Required({ requiredFields = [], formCount = [] }) {
       `Next of Kin Home City/Town${count.id}`,
       `Next of Kin Home LGA${count.id}`,
       `Next of Kin Home State${count.id}`,
-      `Affiliated/Parent Company${count.id}`,
-      `Country of Affiliated/Parent Company${count.id}`,
+      `Affliated/Parent Company${count.id}`,
+      `Country of Affliated/Parent Company${count.id}`,
+      `Specimen Title${count.id}`,
+      `Specimen Name${count.id}`,
+      `Specimen Designation${count.id}`,
+      `Specimen BVN Number${count.id}`,
+      `Specimen Signature Class${count.id}`,
+      `Specimen Signature${count.id}`,
+      `Specimen Passport Photograph${count.id}`,
     ]);
   }, [formCount]);
 
@@ -108,5 +126,5 @@ export default function Required({ requiredFields = [], formCount = [] }) {
     return [...staticFields, ...dynamicFields];
   }, [staticFields, dynamicFields]);
 
-  return { allRequiredFields };
+  return { allRequiredFields, formCount };
 }

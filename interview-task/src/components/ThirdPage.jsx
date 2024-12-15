@@ -91,16 +91,26 @@ export default function ThirdPage() {
                 <span>Gender:</span>
                 <Checkbox
                   text="F"
-                  checked={formData[`Gender${count.id}`] === "Female"}
+                  checked={
+                    formData[`Proprietor's Gender${count.id}`] === "Female"
+                  }
                   onChange={() =>
-                    handleCheckboxChange(`Gender${count.id}`, "Female")
+                    handleCheckboxChange(
+                      `Proprietor's Gender${count.id}`,
+                      "Female"
+                    )
                   }
                 />
                 <Checkbox
                   text="M"
-                  checked={formData[`Gender${count.id}`] === "Male"}
+                  checked={
+                    formData[`Proprietor's Gender${count.id}`] === "Male"
+                  }
                   onChange={() =>
-                    handleCheckboxChange(`Gender${count.id}`, "Male")
+                    handleCheckboxChange(
+                      `Proprietor's Gender${count.id}`,
+                      "Male"
+                    )
                   }
                 />
               </div>
@@ -130,16 +140,28 @@ export default function ThirdPage() {
               <span className="font-bold flex-wrap">Marital Status:</span>
               <Checkbox
                 text={"Single"}
-                checked={formData[`Marital-Status${count.id}`] === "Single"}
+                checked={
+                  formData[`Proprietor's Marital Status${count.id}`] ===
+                  "Single"
+                }
                 onChange={() =>
-                  handleCheckboxChange(`Marital-Status${count.id}`, "Single")
+                  handleCheckboxChange(
+                    `Proprietor's Marital Status${count.id}`,
+                    "Single"
+                  )
                 }
               />
               <Checkbox
                 text={"Married"}
-                checked={formData[`Marital-Status${count.id}`] === "Married"}
+                checked={
+                  formData[`Proprietor's Marital Status${count.id}`] ===
+                  "Married"
+                }
                 onChange={() =>
-                  handleCheckboxChange(`Marital-Status${count.id}`, "Married")
+                  handleCheckboxChange(
+                    `Proprietor's Marital Status${count.id}`,
+                    "Married"
+                  )
                 }
               />
             </div>
@@ -267,23 +289,39 @@ export default function ThirdPage() {
               <div className="flex justify-between gap-lg-3">
                 <Checkbox
                   text={"Owned"}
-                  checked={formData[`House${count.id}`] === "Owned"}
+                  checked={
+                    formData[`House Ownership Status${count.id}`] === "Owned"
+                  }
                   onChange={() =>
-                    handleCheckboxChange(`House${count.id}`, "Owned")
+                    handleCheckboxChange(
+                      `House Ownership Status${count.id}`,
+                      "Owned"
+                    )
                   }
                 />
                 <Checkbox
                   text={"Rented"}
-                  checked={formData[`House${count.id}`] === "Rented"}
+                  checked={
+                    formData[`House Ownership Status${count.id}`] === "Rented"
+                  }
                   onChange={() =>
-                    handleCheckboxChange(`House${count.id}`, "Rented")
+                    handleCheckboxChange(
+                      `House Ownership Status${count.id}`,
+                      "Rented"
+                    )
                   }
                 />
                 <Checkbox
                   text={"Family House"}
-                  checked={formData[`House${count.id}`] === "Family House"}
+                  checked={
+                    formData[`House Ownership Status${count.id}`] ===
+                    "Family House"
+                  }
                   onChange={() =>
-                    handleCheckboxChange(`House${count.id}`, "Family House")
+                    handleCheckboxChange(
+                      `House Ownership Status${count.id}`,
+                      "Family House"
+                    )
                   }
                 />
               </div>
@@ -294,7 +332,7 @@ export default function ThirdPage() {
               <Info
                 type={"number"}
                 title={"Phone Number (1)"}
-                name={"First Proprietor's Phone Number"}
+                name={`First Proprietor's Phone Number${count.id}`}
               />
             </div>
             <div className="col-12 col-lg-5">
@@ -353,9 +391,9 @@ export default function ThirdPage() {
             <div className="flex gap-2 items-center col-lg-6">
               <span className="font-bold">ID Issue Date:</span>
               <DatePicker
-                selected={formData["Proprietor's ID Issue Date"]}
+                selected={formData[`Proprietor's ID Issue Date${count.id}`]}
                 onChange={(date) =>
-                  updateField("Proprietor's ID Issue Date", date)
+                  updateField(`Proprietor's ID Issue Date${count.id}`, date)
                 }
                 name={`Proprietor's ID Issue Date${count.id}`}
                 className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
@@ -420,9 +458,9 @@ export default function ThirdPage() {
             <div className="flex gap-2 items-center col-lg-4">
               <span>Date of Birth</span>
               <DatePicker
-                selected={formData[`next-of-kin-DOB${count.id}`]}
+                selected={formData[`Next of Kin DOB${count.id}`]}
                 onChange={(date) =>
-                  updateField(`next-of-kin-DOB${count.id}`, date)
+                  updateField(`Next of Kin DOB${count.id}`, date)
                 }
                 name={`Next of Kin DOB${count.id}`}
                 className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
@@ -483,7 +521,7 @@ export default function ThirdPage() {
               <Info
                 type={"text"}
                 title={"Residential Address"}
-                name={`Next of Kin Home Adress${count.id}`}
+                name={`Next of Kin Home Address${count.id}`}
               />
             </div>
             <div className="col-12 col-lg-5">
