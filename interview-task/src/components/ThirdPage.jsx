@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "./FormContext";
 import DropDown from "./DropDown";
+import Select from "./Select";
 
 export default function ThirdPage() {
   const { formData, updateField, formCount, setFormCount } = useForm();
@@ -72,63 +73,42 @@ export default function ThirdPage() {
               />
             </div>
           </div>
-          <div className="row flex-column flex-lg-row gap-3">
-            <div className="flex gap-2 items-center col-12 col-lg-6">
+          <div className="row flex-column flex-lg-row gap-3 gap-lg-0 align-items-lg-center">
+            <div className="flex gap-2 flex-col col-12 col-lg-4">
               <span>Date of Birth</span>
               <DatePicker
                 selected={formData[`Proprietor DOB${count.id}`]}
                 onChange={(date) =>
                   updateField(`Proprietor DOB${count.id}`, date)
                 }
-                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
                 placeholderText="Select a date"
                 name={`Proprietor DOB${count.id}`}
                 value={formData[`Proprietor DOB${count.id}`] || ""}
               />
             </div>
-            <div className="d-flex align-items-center justify-between col-lg-5">
-              <div className="flex gap-2">
-                <span>Gender:</span>
-                <Checkbox
-                  text="F"
-                  checked={
-                    formData[`Proprietor's Gender${count.id}`] === "Female"
-                  }
-                  onChange={() =>
-                    handleCheckboxChange(
-                      `Proprietor's Gender${count.id}`,
-                      "Female"
-                    )
-                  }
+            <div className="col-lg-4">
+              <Select
+                text="Gender"
+                name={`Proprietor's Gender${count.id}`}
+                options={["Male", "Female"]}
+                disabled="Select your gender"
+              />
+            </div>
+            <div className="flex flex-col col-lg-4">
+              <div className="relative flex-col flex-lg-4">
+                <Info
+                  type={"text"}
+                  title="Title"
+                  name={`Proprietor Title${count.id}`}
                 />
-                <Checkbox
-                  text="M"
-                  checked={
-                    formData[`Proprietor's Gender${count.id}`] === "Male"
-                  }
-                  onChange={() =>
-                    handleCheckboxChange(
-                      `Proprietor's Gender${count.id}`,
-                      "Male"
-                    )
-                  }
-                />
-              </div>
-              <div className="flex">
-                <div className="relative">
-                  <Info
-                    type={"text"}
-                    title="Title"
-                    name={`Proprietor Title${count.id}`}
-                  />
-                  <span className="text-xs font-bold absolute top-[100%] left-[40%]">
-                    (Mr, Mrs, Dr, Chief, etc)
-                  </span>
-                </div>
+                <span className="text-xs font-bold absolute top-[100%] left-[40%]">
+                  (Mr, Mrs, Dr, Chief, etc)
+                </span>
               </div>
             </div>
           </div>
-          <div className="row d-flex flex-column gap-3 flex-lg-row justify-content-lg-between">
+          <div className="row d-flex flex-column gap-3 flex-lg-row gap-lg-0">
             <div className="col-lg-4">
               <Info
                 type={"text"}
@@ -136,33 +116,12 @@ export default function ThirdPage() {
                 name={`Proprietor Place of Birth${count.id}`}
               />
             </div>
-            <div className="flex gap-2 col-lg-3">
-              <span className="font-bold flex-wrap">Marital Status:</span>
-              <Checkbox
-                text={"Single"}
-                checked={
-                  formData[`Proprietor's Marital Status${count.id}`] ===
-                  "Single"
-                }
-                onChange={() =>
-                  handleCheckboxChange(
-                    `Proprietor's Marital Status${count.id}`,
-                    "Single"
-                  )
-                }
-              />
-              <Checkbox
-                text={"Married"}
-                checked={
-                  formData[`Proprietor's Marital Status${count.id}`] ===
-                  "Married"
-                }
-                onChange={() =>
-                  handleCheckboxChange(
-                    `Proprietor's Marital Status${count.id}`,
-                    "Married"
-                  )
-                }
+            <div className="col-lg-4">
+              <Select
+                name={`Proprietor's Marital Status${count.id}`}
+                text="Marital Status"
+                options={["Single", "Married"]}
+                disabled="What is your marital status?"
               />
             </div>
             <div className="col-lg-4">
@@ -191,8 +150,8 @@ export default function ThirdPage() {
               />
             </div>
           </div>
-          <div className="row flex-column gap-3 flex-lg-row">
-            <div className="flex gap-2 items-center col-lg-5">
+          <div className="row flex-column gap-3 flex-lg-row justify-between">
+            <div className="flex gap-2 flex-col col-lg-5">
               <span>Permit Issue Date</span>
               <DatePicker
                 selected={formData[`Proprietor's Permit Issue Date${count.id}`]}
@@ -200,11 +159,11 @@ export default function ThirdPage() {
                   updateField(`Proprietor's Permit Issue Date${count.id}`, date)
                 }
                 name={`Proprietor's Permit Issue Date${count.id}`}
-                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
                 placeholderText="Select a date"
               />
             </div>
-            <div className="flex gap-2 items-center col-lg-5">
+            <div className="flex gap-2 flex-col col-lg-5">
               <span>Permit Expiry Date</span>
               <DatePicker
                 selected={
@@ -217,7 +176,7 @@ export default function ThirdPage() {
                   )
                 }
                 name={`Proprietor's Permit Expiry Date${count.id}`}
-                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
                 placeholderText="Select a date"
               />
             </div>
@@ -274,7 +233,7 @@ export default function ThirdPage() {
             stateName={`Proprietor's Residence State${count.id}`}
             LGAName={`Proprietor's Residence LGA${count.id}`}
           />
-          <div className="row flex-column flex-lg-row gap-3">
+          <div className="row flex-column flex-lg-row gap-3 lg:justify-between">
             <div className="col-12 col-lg-5">
               <Info
                 type={"text"}
@@ -282,49 +241,13 @@ export default function ThirdPage() {
                 name={`Proprietor's Residence City/Town${count.id}`}
               />
             </div>
-            <div className="flex flex-col lg:flex-row gap-3 col-12 col-lg-5">
-              <div>
-                <span>Ownership Status:</span>
-              </div>
-              <div className="flex justify-between gap-lg-3">
-                <Checkbox
-                  text={"Owned"}
-                  checked={
-                    formData[`House Ownership Status${count.id}`] === "Owned"
-                  }
-                  onChange={() =>
-                    handleCheckboxChange(
-                      `House Ownership Status${count.id}`,
-                      "Owned"
-                    )
-                  }
-                />
-                <Checkbox
-                  text={"Rented"}
-                  checked={
-                    formData[`House Ownership Status${count.id}`] === "Rented"
-                  }
-                  onChange={() =>
-                    handleCheckboxChange(
-                      `House Ownership Status${count.id}`,
-                      "Rented"
-                    )
-                  }
-                />
-                <Checkbox
-                  text={"Family House"}
-                  checked={
-                    formData[`House Ownership Status${count.id}`] ===
-                    "Family House"
-                  }
-                  onChange={() =>
-                    handleCheckboxChange(
-                      `House Ownership Status${count.id}`,
-                      "Family House"
-                    )
-                  }
-                />
-              </div>
+            <div className="col-12 col-lg-5">
+              <Select
+                text="Ownership Status"
+                name={`House Ownership Status${count.id}`}
+                options={["Owned", "Rented", "Family House"]}
+                disabled="Ownership status of your house?"
+              />
             </div>
           </div>
           <div className="row flex-column flex-lg-row gap-3 justify-content-lg-between">
@@ -350,35 +273,22 @@ export default function ThirdPage() {
           />
           <InfoHeader number={"III."} text={"MEANS OF IDENTIFICATION"} />
           <div className="flex justify-between items-center flex-wrap gap-y-3">
-            <Checkbox
-              text={"National ID Card"}
-              checked={formData[`Identification${count.id}`] === "ID"}
-              onChange={() =>
-                handleCheckboxChange([`Identification${count.id}`], "ID")
-              }
-            />
-            <Checkbox
-              text={"National Driver's License"}
-              checked={formData[`Identification${count.id}`] === "Driver"}
-              onChange={() =>
-                handleCheckboxChange([`Identification${count.id}`], "Driver")
-              }
-            />
-            <Checkbox
-              text={"International Pasport"}
-              checked={formData[`Identification${count.id}`] === "Passport"}
-              onChange={() =>
-                handleCheckboxChange([`Identification${count.id}`], "Passport")
-              }
-            />
-            <Checkbox
-              text={"National Voter's Card"}
-              checked={formData[`Identification${count.id}`] === "Voter"}
-              onChange={() =>
-                handleCheckboxChange([`Identification${count.id}`], "Voter")
-              }
-            />
-            <Info type={"text"} title={"*Other(Please specify)"} />
+            <div className="col-lg-5 col-12">
+              <Select
+                text="Means of Identification"
+                name={`Identification${count.id}`}
+                options={[
+                  "National ID Card",
+                  "National Driver's License",
+                  "Internation Passport",
+                  "INEC Voter's Card",
+                ]}
+                disabled="Preffered means of identification?"
+              />
+            </div>
+            <div className="col-lg-5 col-12">
+              <Info type={"text"} title={"*Other(Please specify)"} />
+            </div>
           </div>
           <div>
             <Info
@@ -387,8 +297,8 @@ export default function ThirdPage() {
               name={`Other means of Identification${count.id}`}
             />
           </div>
-          <div className="row flex-column flex-lg-row gap-3">
-            <div className="flex gap-2 items-center col-lg-6">
+          <div className="row flex-column flex-lg-row gap-3 justify-between">
+            <div className="flex gap-2 flex-col col-lg-6">
               <span className="font-bold">ID Issue Date:</span>
               <DatePicker
                 selected={formData[`Proprietor's ID Issue Date${count.id}`]}
@@ -396,11 +306,11 @@ export default function ThirdPage() {
                   updateField(`Proprietor's ID Issue Date${count.id}`, date)
                 }
                 name={`Proprietor's ID Issue Date${count.id}`}
-                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
                 placeholderText="Select a date"
               />
             </div>
-            <div className="flex gap-2 items-center col-lg-5">
+            <div className="flex gap-2 flex-col col-lg-5">
               <span className="font-bold">ID Expiry Date:</span>
               <DatePicker
                 selected={formData[`Proprietor's ID Expiry Date${count.id}`]}
@@ -408,7 +318,7 @@ export default function ThirdPage() {
                   updateField(`Proprietor's ID Expiry Date${count.id}`, date)
                 }
                 name={`Proprietor's ID Expiry Date${count.id}`}
-                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
                 placeholderText="Select a date"
               />
             </div>
@@ -454,8 +364,8 @@ export default function ThirdPage() {
               </span>
             </div>
           </div>
-          <div className="row d-flex flex-column flex-lg-row gap-3">
-            <div className="flex gap-2 items-center col-lg-4">
+          <div className="row d-flex flex-column flex-lg-row gap-3 gap-lg-0">
+            <div className="flex gap-2 flex-col col-lg-4">
               <span>Date of Birth</span>
               <DatePicker
                 selected={formData[`Next of Kin DOB${count.id}`]}
@@ -463,28 +373,16 @@ export default function ThirdPage() {
                   updateField(`Next of Kin DOB${count.id}`, date)
                 }
                 name={`Next of Kin DOB${count.id}`}
-                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200"
+                className="border border-gray-300 p-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-200 w-full"
                 placeholderText="Select a date"
               />
             </div>
-            <div className="flex gap-2 col-lg-3">
-              <span className="font-bold">Gender:</span>
-              <Checkbox
-                text={"F"}
-                checked={formData[`Next of Kin Gender${count.id}`] === "Female"}
-                onChange={() =>
-                  handleCheckboxChange(
-                    `Next of Kin Gender${count.id}`,
-                    "Female"
-                  )
-                }
-              />
-              <Checkbox
-                text={"M"}
-                checked={formData[`Next of Kin Gender${count.id}`] === "Male"}
-                onChange={() =>
-                  handleCheckboxChange(`Next of Kin Gender${count.id}`, "Male")
-                }
+            <div className="col-lg-4">
+              <Select
+                text="Gender"
+                name={`Next of Kin Gender${count.id}`}
+                options={["Male", "Female"]}
+                disabled="Select your gender"
               />
             </div>
             <div className="col-lg-4">

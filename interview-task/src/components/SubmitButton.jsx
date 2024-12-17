@@ -6,7 +6,7 @@ import { useState } from "react";
 import Required from "./RequiredFields";
 
 export default function SubmitButton() {
-  const { formData, imageData, validateForm, formCount } = useForm();
+  const { formData, imageData, validateForm, formCount, errors } = useForm();
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState(null);
 
@@ -19,7 +19,12 @@ export default function SubmitButton() {
     console.log(formData);
 
     if (!isFormValid) {
-      toast.error("Fill all inputs");
+      Object.keys(errors).map((error) => {
+        if (errors[error].includes("Invalid")) {
+          toast.error(`${error} is an invalid email address`);
+        }
+      });
+      toast.error("Fill all required inputs");
       return;
     }
 

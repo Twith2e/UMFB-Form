@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useForm } from "./FormContext";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function DropDown({ stateName, LGAName }) {
   const [allStates, setAllStates] = useState([]);
@@ -34,20 +35,21 @@ export default function DropDown({ stateName, LGAName }) {
   };
 
   return (
-    <div className="row flex">
-      <div className="flex col-6 gap-2 items-center">
+    <div className="row flex flex-col lg:flex-row lg:justify-between">
+      <div className="flex flex-col col-12 col-lg-5 gap-2 relative">
         <label
           htmlFor="stateSelect"
           className="font-bold text-sm whitespace-nowrap"
         >
           State:
         </label>
+
         <select
           id="stateSelect"
           onChange={handleStateChange}
           value={formData[stateName] || ""}
           name={stateName}
-          className="block w-full py-2 pl-3 pr-10 text-base border border-gray-300 appearance-none focus:outline-none focus:ring-2 focus:ring-red-900"
+          className="block w-full py-2 pl-3 pr-10 text-base border border-gray-500 appearance-none focus:outline-none focus:ring-2 focus:ring-red-900"
         >
           <option value="" disabled>
             Select a state
@@ -58,9 +60,17 @@ export default function DropDown({ stateName, LGAName }) {
             </option>
           ))}
         </select>
+        <ExpandMoreIcon
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: "50%",
+            pointerEvents: "none",
+          }}
+        />
       </div>
 
-      <div className="flex items-center gap-2 col-6">
+      <div className="flex flex-col gap-2 col-12 col-lg-5 relative">
         <label
           htmlFor="LGASelect"
           className="font-bold text-sm whitespace-nowrap"
@@ -82,6 +92,14 @@ export default function DropDown({ stateName, LGAName }) {
             </option>
           ))}
         </select>
+        <ExpandMoreIcon
+          style={{
+            position: "absolute",
+            right: "20px",
+            top: "50%",
+            pointerEvents: "none",
+          }}
+        />
       </div>
     </div>
   );
