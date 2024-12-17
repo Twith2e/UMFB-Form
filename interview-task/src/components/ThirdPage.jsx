@@ -475,7 +475,7 @@ export default function ThirdPage() {
         </div>
       ))}
       <div className="text-center">
-        <button className="bg-green-500 text-white px-2 py-1" onClick={addForm}>
+        <button className="bg-[#afd039] text-white px-2 py-1" onClick={addForm}>
           Add
         </button>
       </div>
